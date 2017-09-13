@@ -14,7 +14,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build" : "node_modules/.bin/tsc",
-    "prepublishOnly" : "node_modules/.bin/tse"
+    "preinstall" : "node_modules/.bin/tse"
   },
   "keywords": [],
   "author": "",
