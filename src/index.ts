@@ -1,13 +1,30 @@
 import FsUtil from './FsUtil';
 import Repo from './Repo';
 import fs = require('fs');
+import About from './ValueObjects/About'
 
-//Create Fs Util
-let fsUtil = new FsUtil(fs);
+export default class PanthalassaApi
+{
 
-//Create Repo
-let repo = new Repo(fsUtil);
+    private repo:Repo;
 
-export default {
-    repo
+    constructor()
+    {
+        //Create Fs Util
+        let fsUtil = new FsUtil(fs);
+
+        //Create Repo
+        this.repo = new Repo(fsUtil);
+    }
+
+    /**
+     * @param about
+     */
+    public setAbout(about: About) : PanthalassaApi
+    {
+        this.repo.setAbout(about);
+
+        return this;
+    }
+
 }
