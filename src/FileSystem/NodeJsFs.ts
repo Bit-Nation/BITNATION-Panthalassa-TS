@@ -4,8 +4,9 @@ import FileSystemInterface from './FileSystemInterface'
 import Path = require('path');
 import Ipfs from "../Ipfs";
 import {IpfsAddedFileResponse} from "../ValueObjects";
+const IpfsNode = require('ipfs');
 
-export default class NodeJsFs implements FileSystemInterface
+export class NodeJsFs implements FileSystemInterface
 {
 
     /**
@@ -50,4 +51,9 @@ export default class NodeJsFs implements FileSystemInterface
 
         });
     }
+}
+
+export function create(repoPath: string) : NodeJsFs
+{
+    return new NodeJsFs(repoPath, Path, new Ipfs(new IpfsNode()));
 }
