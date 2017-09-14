@@ -1,4 +1,4 @@
-import About from "./ValueObjects/About";
+import {About} from "./ValueObjects";
 import FsUtil from "./FsUtil";
 
 export default class Repo

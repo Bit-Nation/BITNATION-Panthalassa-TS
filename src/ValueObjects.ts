@@ -1,6 +1,26 @@
-import EthAddress from "./EthAddress";
+export class EthAddress
+{
+    /**
+     * @param {string} address
+     */
+    constructor(private address: string)
+    {
+        if(address.length !== 42){
+            throw new Error('Expected EthAddress, got: '+address);
+        }
+    }
 
-export default class About
+    /**
+     *
+     * @returns {string}
+     */
+    public getAddress() : string
+    {
+        return this.address;
+    }
+}
+
+export class About
 {
 
     /**

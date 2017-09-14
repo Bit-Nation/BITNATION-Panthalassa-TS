@@ -1,7 +1,7 @@
 import FsUtil from './FsUtil';
 import Repo from './Repo';
 import fs = require('fs');
-import About from './ValueObjects/About'
+import {About} from './ValueObjects'
 
 export default class PanthalassaApi
 {
