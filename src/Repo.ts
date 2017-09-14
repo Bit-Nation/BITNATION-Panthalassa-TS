@@ -1,21 +1,19 @@
 import {About} from "./ValueObjects";
-import FsUtil from "./FsUtil";
+import FileSystemInterface from './FileSystem/FileSystemInterface';
 
 export default class Repo
 {
 
-    constructor(private fsUtil: FsUtil) {}
+    constructor(private fs: FileSystemInterface) {}
 
     /**
      *
      * @param {About} about
      * @returns {Repo}
      */
-    public setAbout(about: About) : Repo
+    public setAbout(about: About) : Promise<string>
     {
-        this.fsUtil.writeFile('about.json', JSON.stringify(about));
-
-        return this;
+        return this.fs.writeFile('about.json', JSON.stringify(about));
     }
 
 }
