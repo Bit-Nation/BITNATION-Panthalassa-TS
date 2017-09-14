@@ -1,13 +1,30 @@
-import FsUtil from './FsUtil';
 import Repo from './Repo';
-import fs = require('fs');
+import FileSystemInterface from './FileSystem/FileSystemInterface'
+import {About, IpfsAddedFileResponse} from "./ValueObjects";
 
-//Create Fs Util
-let fsUtil = new FsUtil(fs);
+export default class PanthalassaApi
+{
 
-//Create Repo
-let repo = new Repo(fsUtil);
+    private repo:Repo;
 
-export default {
-    repo
+    /**
+     *
+     * @param {FileSystemInterface} fs
+     */
+    constructor(private fs: FileSystemInterface)
+    {
+        //Create Repo
+        this.repo = new Repo(fs);
+    }
+
+    /**
+     *
+     * @param {About} about
+     * @returns {Promise<IpfsAddedFileResponse>}
+     */
+    public setAbout(about: About) : Promise<IpfsAddedFileResponse>
+    {
+        return this.repo.setAbout(about);
+    }
+
 }

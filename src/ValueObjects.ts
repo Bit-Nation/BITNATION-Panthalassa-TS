@@ -1,6 +1,26 @@
-import EthAddress from "./EthAddress";
+export class EthAddress
+{
+    /**
+     * @param {string} address
+     */
+    constructor(private address: string)
+    {
+        if(address.length !== 42){
+            throw new Error('Expected EthAddress, got: '+address);
+        }
+    }
 
-export default class About
+    /**
+     *
+     * @returns {string}
+     */
+    public getAddress() : string
+    {
+        return this.address;
+    }
+}
+
+export class About
 {
 
     /**
@@ -48,4 +68,24 @@ export default class About
         return this.description;
     }
 
+}
+
+export class IpfsAddedFileResponse
+{
+    constructor(private path: string,private hash: string,private size: number) {}
+
+    public getPath() : string
+    {
+        return this.path;
+    }
+
+    public getHash() : string
+    {
+        return this.hash;
+    }
+
+    public getSize() : number
+    {
+        return this.size;
+    }
 }
