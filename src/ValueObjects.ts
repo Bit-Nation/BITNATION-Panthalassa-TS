@@ -70,7 +70,7 @@ export class About
 
 }
 
-export class IpfsAddFileResponse
+export class IpfsAddedFileResponse
 {
     constructor(private path: string,private hash: string,private size: number) {}
 

@@ -1,4 +1,4 @@
-import {IpfsAddFileResponse} from "./ValueObjects";
+import {IpfsAddedFileResponse} from "./ValueObjects";
 const IpfsNode = require('ipfs');
 
 export default class Ipfs
@@ -32,9 +32,9 @@ export default class Ipfs
      * Adds a file to the ipfs
      * @param {string} fileName
      * @param {Buffer} content
-     * @returns {Promise<IpfsAddFileResponse>}
+     * @returns {Promise<IpfsAddedFileResponse>}
      */
-    public addFile(fileName: string, content: Buffer) : Promise<IpfsAddFileResponse>
+    public addFile(fileName: string, content: Buffer) : Promise<IpfsAddedFileResponse>
     {
         return new Promise((fulfill, reject) => {
             this.ipfsInstance
@@ -45,7 +45,7 @@ export default class Ipfs
                         content: content
                     }], function(err: any, results: Array<{path: string, hash: string, size: number}>){
 
-                        fulfill(new IpfsAddFileResponse(
+                        fulfill(new IpfsAddedFileResponse(
                             results[0].path,
                             results[0].hash,
                             results[0].size

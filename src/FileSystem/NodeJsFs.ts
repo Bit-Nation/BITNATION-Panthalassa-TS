@@ -2,6 +2,8 @@ import fs = require('fs');
 
 import FileSystemInterface from './FileSystemInterface'
 import Path = require('path');
+import Ipfs from "../Ipfs";
+import {IpfsAddedFileResponse} from "../ValueObjects";
 
 export default class NodeJsFs implements FileSystemInterface
 {
@@ -10,8 +12,9 @@ export default class NodeJsFs implements FileSystemInterface
      *
      * @param {string} repoPath
      * @param {typeof Path} path
+     * @param {Ipfs} ipfs
      */
-    constructor(private repoPath: string, private path: typeof Path) { }
+    constructor(private repoPath: string, private path: typeof Path, private ipfs: Ipfs) { }
 
     private encoding: 'utf8';
 
@@ -21,19 +24,27 @@ export default class NodeJsFs implements FileSystemInterface
      * @param {string} content
      * @returns {Promise<string>}
      */
-    writeFile(fileName: string, content: string): Promise<string> {
+    writeFile(fileName: string, content: string): Promise<IpfsAddedFileResponse> {
 
         let filePath = this.path.normalize(this.repoPath+fileName);
 
-        return new Promise<string>((resolve, reject) => {
+        return new Promise<IpfsAddedFileResponse>((resolve, reject) => {
 
-            fs.writeFile(filePath, content, this.encoding, function(err){
+            fs.writeFile(filePath, content, this.encoding, (err) => {
 
+                //Reject on error
                 if(err){
                     reject(err);
                 }
 
-                resolve(filePath);
+                //Add file to ipfs
+                this.ipfs.addFile(fileName, new Buffer(content))
+                    .then((ipfsFile: IpfsAddedFileResponse) => {
+                        resolve(ipfsFile);
+                    })
+                    .catch((err) => {
+                        reject(err);
+                    });
 
             });
 

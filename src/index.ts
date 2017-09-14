@@ -1,6 +1,6 @@
 import Repo from './Repo';
-import {About} from './ValueObjects'
 import FileSystemInterface from './FileSystem/FileSystemInterface'
+import {About, IpfsAddedFileResponse} from "./ValueObjects";
 
 export default class PanthalassaApi
 {
@@ -20,9 +20,9 @@ export default class PanthalassaApi
     /**
      *
      * @param {About} about
-     * @returns {Promise<string>}
+     * @returns {Promise<IpfsAddedFileResponse>}
      */
-    public setAbout(about: About) : Promise<string>
+    public setAbout(about: About) : Promise<IpfsAddedFileResponse>
     {
         return this.repo.setAbout(about);
     }
