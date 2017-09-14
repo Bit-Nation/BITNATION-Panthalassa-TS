@@ -69,3 +69,23 @@ export class About
     }
 
 }
+
+export class IpfsAddFileResponse
+{
+    constructor(private path: string,private hash: string,private size: number) {}
+
+    public getPath() : string
+    {
+        return this.path;
+    }
+
+    public getHash() : string
+    {
+        return this.hash;
+    }
+
+    public getSize() : number
+    {
+        return this.size;
+    }
+}
