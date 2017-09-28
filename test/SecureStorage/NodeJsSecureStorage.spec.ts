@@ -6,14 +6,17 @@ describe('secure storage for nodejs platform', () => {
     let testStorageName = "testStorage";
     let testStoragePassword = "assword";
 
-    test('should create file for non existing storage', () => {
+    test('should create file for non existing storage', async () => {
         let storageManager = new NodeJsSecureStorageManager();
         expect(doesFileExist(testStorageName)).toBe(false);
-        let storage = storageManager.openOrCreateStorage(testStorageName, testStoragePassword);
+        let storage = await storageManager.openOrCreateStorage(testStorageName, testStoragePassword);
         expect(doesFileExist(testStorageName)).toBe(true);
+        await storage.setItem("key1","value1");
+        expect(await storage.getItem("key1")).toBe("value1");
+        storageManager.deleteStorage(testStorageName, testStoragePassword);
     });
 
-    afterAll(() => {
+    afterEach(() => {
         unlinkSync(testStorageName);
     });
 

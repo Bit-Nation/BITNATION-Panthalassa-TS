@@ -6,6 +6,7 @@
   "types": "./dist/index.d.ts",
   "dependencies": {
     "@types/node": "^8.0.28",
+    "cryptr": "^2.0.0",
     "ipfs": "^0.26.0",
     "react-native-sensitive-info": "^5.1.0",
     "typescript": "^2.5.2"
