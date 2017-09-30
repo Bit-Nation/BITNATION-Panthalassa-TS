@@ -1,6 +1,7 @@
-import {SecureStorageInterface,SecureStorageManagerInterface} from './SecureStorageInterface';
+import {SecureStorageInterface,SecureStorageManager} from './SecureStorageInterface';
 import SInfo from 'react-native-sensitive-info';
 
+// TODO: This code is not tested at all
 class ReactNativeSecureStorage implements SecureStorageInterface {
     readonly options: any;
     constructor (name: string) {
@@ -21,23 +22,24 @@ class ReactNativeSecureStorage implements SecureStorageInterface {
             await this.removeItem(key);
         }
     }
+    isPasswordValid() {
+        // Password validation is delegated to OS
+        return true;
+    }
+    writeToFile () {
+        return Promise.resolve();
+    }
 }
 
-class ReactNativeSecureStorageManager implements SecureStorageManagerInterface {
+class ReactNativeSecureStorageManager extends SecureStorageManager {
 
-    openSessions: Map<string, SecureStorageInterface> = new Map<string, SecureStorageInterface>();
-
-    async openOrCreateStorage(name: string, password?: string): Promise < SecureStorageInterface > {
-        // Authentication is handled by mobile OS
-        if (!this.openSessions.has(name)) {
-            this.openSessions.set(name, new ReactNativeSecureStorage(name));
-        }
-        return Promise.resolve(this.openSessions.get(name));
+    async createStorage(name: string, password?: string): Promise < ReactNativeSecureStorage > {
+        return new ReactNativeSecureStorage(name);
     }
-    async deleteStorage(name: string, password?: string): Promise <void> {
+    async deleteStorage(name: string, password: string): Promise <void> {
         // Not implemented in react-native-sensitive-info
         // Instead of deleting the secure storage we will delete all its content
-        let storage : ReactNativeSecureStorage = await this.openOrCreateStorage(name);
+        let storage : ReactNativeSecureStorage = await this.openOrCreateStorage(name, password) as ReactNativeSecureStorage;
         await storage.clear();
     }
 }

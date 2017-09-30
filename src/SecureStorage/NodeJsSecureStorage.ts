@@ -1,37 +1,39 @@
-import {SecureStorageInterface,SecureStorageManagerInterface} from './SecureStorageInterface';
-import {readFileSync,writeFileSync, unlinkSync, statSync} from 'fs';
-//import {Cryptr} from 'cryptr';
-var Cryptr = require('cryptr');
+import {SecureStorageInterface,SecureStorageManager} from './SecureStorageInterface';
+import {readFileSync,writeFileSync, unlinkSync, existsSync} from 'fs';
+import {AES, enc} from 'crypto-js';
 export class NodeJsSecureStorage implements SecureStorageInterface {
-    fileName: string;
-    keyValueStore: Map<string,any>;
-    password: string;
-    cryptr: Cryptr;
+    private fileName: string;
+    // Using map is not feasible for serializaion/deserialization
+    private keyValueStore: any;
+    private password: string;
     constructor (fileName: string, password: string) {
-        this.cryptr = new Cryptr(password);        
         this.fileName = fileName;
         this.password = password;
-        try {
-            statSync(fileName);
-            this.keyValueStore = JSON.parse(this.cryptr.decrypt(readFileSync(fileName, "utf8")));
-        } catch (e) {
-            this.keyValueStore = new Map<string,any>();
+
+    }
+    init() {
+        if (existsSync(this.fileName)) {
+            let fileContent = readFileSync(this.fileName, "utf8");
+            fileContent = AES.decrypt(fileContent,this.password).toString(enc.Utf8);
+            this.keyValueStore = JSON.parse(fileContent);
+        } else {
+            this.keyValueStore = {};
         }
     }
     async getItem(key: string): Promise<any> {
-        return this.keyValueStore.get(key);
+        return this.keyValueStore[key];
     }
     async setItem(key: string, value: any) {
-        this.keyValueStore.set(key, value);
-        await this.store();
+        this.keyValueStore[key] = value;
+        await this.writeToFile();
     }
     async removeItem(key: string) {
-        this.keyValueStore.delete(key);
-        await this.store();
+        delete this.keyValueStore[key];
+        await this.writeToFile();
     }
 
-    async store() {
-        writeFileSync(this.fileName, this.cryptr.encrypt(JSON.stringify(this.keyValueStore)));
+    async writeToFile() {
+        writeFileSync(this.fileName, AES.encrypt(JSON.stringify(this.keyValueStore),this.password).toString(),{encoding:"utf8"});
     }
 
     isPasswordValid (password:string) : boolean {
@@ -39,26 +41,12 @@ export class NodeJsSecureStorage implements SecureStorageInterface {
     }
 }
 
-export class NodeJsSecureStorageManager implements SecureStorageManagerInterface {
+export class NodeJsSecureStorageManager extends SecureStorageManager {
 
-    openSessions: Map<string, SecureStorageInterface> = new Map<string, SecureStorageInterface>();
-
-    async openOrCreateStorage(name: string, password: string): Promise <SecureStorageInterface> {
-        // Authentication is handled by mobile OS
-        let session = this.openSessions.get(name);
-        if (!session) {
-            let newSession = new NodeJsSecureStorage(name, password);
-            this.openSessions.set(name, newSession);
-            newSession.store();
-            return newSession;
-        } else {
-            if (session.isPasswordValid(password)) {
-                // We only return storage file if it can be decrypted
-                return session;
-            } else {
-                throw new Error("Cannot read, decrypt or parse the storage");
-            }
-        }
+    async createStorage(name: string, password: string): Promise <SecureStorageInterface> {
+        let storage: NodeJsSecureStorage = new NodeJsSecureStorage(name, password);
+        storage.init();
+        return storage;
     }
     async deleteStorage(name: string, password: string): Promise <void> {
         // Not implemented in react-native-sensitive-info
