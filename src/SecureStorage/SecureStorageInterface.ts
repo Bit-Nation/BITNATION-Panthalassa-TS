@@ -26,19 +26,21 @@ export abstract class SecureStorageManager implements SecureStorageManagerInterf
     async openOrCreateStorage(name: string, password: string): Promise < SecureStorageInterface > {
         // Authentication is handled by mobile OS
         let session = this.openSessions.get(name);
+
         if (!session) {
             let newSession = await this.createStorage(name, password);
             this.openSessions.set(name, newSession);
             newSession.writeToFile();
             return newSession;
-        } else {
-            if (session.isPasswordValid(password)) {
-                // We only return storage file if it can be decrypted
-                return session;
-            } else {
-                throw new Error("Cannot read, decrypt or parse the storage");
-            }
         }
+
+        if (session.isPasswordValid(password)) {
+            // We only return storage file if it can be decrypted
+            return session;
+        }
+
+        throw new Error("Cannot read, decrypt or parse the storage");
+
     }
 
     abstract deleteStorage(name: string, password: string): void;
