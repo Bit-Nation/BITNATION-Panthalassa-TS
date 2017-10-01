@@ -21,7 +21,7 @@ export interface SecureStorageManagerInterface {
 
 export abstract class SecureStorageManager implements SecureStorageManagerInterface {
 
-    openSessions: Map < string, SecureStorageInterface > = new Map < string, SecureStorageInterface > ();
+    protected openSessions: Map < string, SecureStorageInterface > = new Map < string, SecureStorageInterface > ();
 
     async openOrCreateStorage(name: string, password: string): Promise < SecureStorageInterface > {
         // Authentication is handled by mobile OS
