@@ -3,7 +3,7 @@ import {isValidPrivate} from 'ethereumjs-util';
 
 export class PrivateKey
 {
-    public constructor(private privKey: string) {
+    public constructor(private privKey: Buffer) {
 
         if(!isValidPrivate(privKey)){
             throw new Error("Private key is invalid")
@@ -12,6 +12,11 @@ export class PrivateKey
     }
 
     public getPrivKey() : string
+    {
+        return this.privKey.toString('hex');
+    }
+
+    public getPrivKeyBuffer() : Buffer
     {
         return this.privKey;
     }
@@ -22,7 +27,5 @@ export function createKey() : PrivateKey
 {
     const entropy:Buffer = randomBytes(32);
 
-    const privKey:string = entropy.toString('hex');
-
-    return new PrivateKey(privKey);
+    return new PrivateKey(entropy);
 }

@@ -5,7 +5,7 @@ declare module 'ethereumjs-util' {
      * @param {string} privateKey
      * @returns {boolean}
      */
-    export function isValidPrivate(privateKey:string) : boolean;
+    export function isValidPrivate(privateKey:Buffer) : boolean;
 
     /**
      *
