@@ -3,3 +3,5 @@ node_modules
 src/*.js
 dist
 coverage
+jest_*/
+npm-debug.log
