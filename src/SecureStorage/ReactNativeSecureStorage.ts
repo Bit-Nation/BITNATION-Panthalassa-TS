@@ -26,6 +26,28 @@ class ReactNativeSecureStorage implements SecureStorageInterface {
         // Password validation is delegated to OS
         return true;
     }
+
+    //@Todo this need's to be tested
+    async hasItem(key:string) : Promise<boolean> {
+
+        let item:any = await this.getItem(key);
+
+        if("number" === typeof item){
+            return true;
+        }
+
+        if("string" === typeof item){
+            return true;
+        }
+
+        if("undefined" === typeof item){
+            return false;
+        }
+
+        throw new Error("Unexpected case: got value which is type of: "+typeof item);
+
+    }
+
     writeToFile () {
         return Promise.resolve();
     }
