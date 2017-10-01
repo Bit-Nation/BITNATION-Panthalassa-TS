@@ -18,12 +18,7 @@ export class PrivateKey
 
 }
 
-/**
- * Create's a PrivateKey
- * @param {string} password
- * @returns {KeyPair}
- */
-export function createKey(password: string) : PrivateKey
+export function createKey() : PrivateKey
 {
     const entropy:Buffer = randomBytes(32);
 
