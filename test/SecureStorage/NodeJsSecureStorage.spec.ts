@@ -1,6 +1,7 @@
-import { statSync, unlinkSync, createReadStream, createWriteStream, copyFileSync } from 'fs';
+import { statSync, unlinkSync, createReadStream, createWriteStream } from 'fs';
+import { copySync } from 'fs-extra'
 import { NodeJsSecureStorage, NodeJsSecureStorageManager } from '../../src/SecureStorage/NodeJsSecureStorage';
-import {SecureStorageInterface} from '../../src/SecureStorage/SecureStorageInterface'
+import { SecureStorageInterface } from '../../src/SecureStorage/SecureStorageInterface'
 
 // TODO: Coverage is still not reported correctly. See: https://stackoverflow.com/questions/41188484/jest-typescript-ts-jest-coverage-is-slightly-incorrect/43119810
 describe('secure storage for nodejs platform', () => {
@@ -27,10 +28,10 @@ describe('secure storage for nodejs platform', () => {
     test('should store string value and be able to save it in file and retrive it from diffirent session', async () => {
         let { storageManager, storage } = await createTestStorageAndAssertItExists();
         await storeValueRetriveAndAssertIt("key1","value1", storage);
-        copyFileSync(testStorageName,testStorageName+".bak");
+        copySync(testStorageName,testStorageName+".bak");
         await storageManager.deleteStorage(testStorageName, testStoragePassword);
         expect(doesFileExist(testStorageName)).toBe(false);
-        copyFileSync(testStorageName+".bak", testStorageName);
+        copySync(testStorageName+".bak", testStorageName);
         let managerAndStorage = await createTestStorageAndAssertItExists(true);
         expect(await managerAndStorage.storage.getItem("key1")).toBe("value1");
     });
