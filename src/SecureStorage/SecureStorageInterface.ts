@@ -5,7 +5,7 @@ export interface SecureStorageInterface {
     getItem(key: string): Promise < any > ;
     setItem(key: string, value: any): Promise < void > ;
     removeItem(key: string): Promise < void > ;
-    hasItem(key: string): boolean
+    hasItem(key: string): Promise < boolean >;
     isPasswordValid(password: string): boolean;
     writeToFile():Promise<void>;
 }

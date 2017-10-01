@@ -76,14 +76,14 @@ describe('secure storage for nodejs platform', () => {
 
         test('should return false if item does not exist', async () => {
             let { storageManager, storage } = await createTestStorageAndAssertItExists();
-            expect(storage.hasItem('i_does_not_exist')).toBe(false);
+            expect(await storage.hasItem('i_does_not_exist')).toBe(false);
         });
 
         test('should return true if item exist', async () => {
             let { storageManager, storage } = await createTestStorageAndAssertItExists();
             storage.setItem('i_exist', 'I am alive');
 
-            expect(storage.hasItem('i_exist')).toBe(true);
+            expect(await storage.hasItem('i_exist')).toBe(true);
         });
 
     });
