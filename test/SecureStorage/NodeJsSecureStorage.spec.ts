@@ -72,6 +72,22 @@ describe('secure storage for nodejs platform', () => {
         }
     });
 
+    describe("hasItem", () => {
+
+        test('should return false if item does not exist', async () => {
+            let { storageManager, storage } = await createTestStorageAndAssertItExists();
+            expect(await storage.hasItem('i_does_not_exist')).toBe(false);
+        });
+
+        test('should return true if item exist', async () => {
+            let { storageManager, storage } = await createTestStorageAndAssertItExists();
+            storage.setItem('i_exist', 'I am alive');
+
+            expect(await storage.hasItem('i_exist')).toBe(true);
+        });
+
+    });
+
     afterEach(() => {
         try {
             unlinkSync(testStorageName);

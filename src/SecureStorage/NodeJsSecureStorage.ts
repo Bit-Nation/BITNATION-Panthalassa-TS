@@ -36,6 +36,10 @@ export class NodeJsSecureStorage implements SecureStorageInterface {
         writeFileSync(this.fileName, AES.encrypt(JSON.stringify(this.keyValueStore),this.password).toString(),{encoding:"utf8"});
     }
 
+    async hasItem(key:string) : Promise<boolean> {
+        return "undefined" !== typeof await this.keyValueStore[key];
+    }
+
     isPasswordValid (password:string) : boolean {
         return this.password === password;
     }
