@@ -38,7 +38,7 @@
     }
   },
   "scripts": {
-    "test": "npm run build && jest",
+    "test": "npm run build && jest --verbose",
     "build": "tsc",
     "postinstall": "npm run build"
   },
