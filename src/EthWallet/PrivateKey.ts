@@ -1,13 +1,21 @@
 import {randomBytes} from 'crypto';
 import {isValidPrivate} from 'ethereumjs-util';
 
-export class PrivateKey
+export default class PrivateKey
 {
     public constructor(private privKey: Buffer) {
 
         if(!isValidPrivate(privKey)){
             throw new Error("Private key is invalid")
         }
+
+    }
+
+    static factory(){
+
+        const entropy:Buffer = randomBytes(32);
+
+        return new PrivateKey(entropy);
 
     }
 
@@ -23,9 +31,3 @@ export class PrivateKey
 
 }
 
-export function createKey() : PrivateKey
-{
-    const entropy:Buffer = randomBytes(32);
-
-    return new PrivateKey(entropy);
-}
