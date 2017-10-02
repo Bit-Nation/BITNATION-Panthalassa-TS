@@ -21,4 +21,11 @@ declare module 'bip39' {
      */
     export function mnemonicToSeedHex(mnemonic:string) : string;
 
+    /**
+     *
+     * @param {string} mnemonic
+     * @returns {Buffer}
+     */
+    export function mnemonicToEntropy(mnemonic:string) : string;
+
 }
