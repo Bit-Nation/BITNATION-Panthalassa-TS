@@ -5,3 +5,4 @@ dist
 coverage
 jest_*/
 npm-debug.log
+.DS_Store
