@@ -12,12 +12,12 @@ declare module 'ethereumjs-util' {
      * @param {string} privateKey
      * @returns {string}
      */
-    export function privateToPublic(privateKey:string) : string;
+    export function privateToPublic(privateKey:Buffer) : Buffer;
 
     /**
      *
      * @param {string} pubKey
      * @returns {string}
      */
-    export function isValidPublic(pubKey:string) : string;
+    export function isValidPublic(pubKey:Buffer) : boolean;
 }
