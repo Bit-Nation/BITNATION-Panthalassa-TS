@@ -1,8 +1,18 @@
-import {entropyToMnemonic} from 'bip39'
-import {createKey, PrivateKey} from './PrivKeyFactory'
-import {privateToPublic, isValidPublic} from 'ethereumjs-util'
+import {entropyToMnemonic, mnemonicToEntropy, mnemonicToSeedHex} from 'bip39'
+import PrivateKey from './PrivateKey'
+import {privateToPublic, isValidPublic, isValidPrivate} from 'ethereumjs-util'
+import {SecureStorageInterface} from './../SecureStorage/SecureStorageInterface';
+import {AES, enc} from 'crypto-js';
 
-export default class EthUtils {
+export class EthKeyAlreadyExist extends Error{}
+
+export class EthKeyDoesNotExist extends Error{}
+
+export class InvalidPrivateKey extends Error{}
+
+export class InvalidPublicKey extends Error{}
+
+export class EthUtils {
 
     /**
      * key name for the secure storage
@@ -10,20 +20,38 @@ export default class EthUtils {
      */
     static PRIV_KEY_SS_NAME = 'private_ethereum_key';
 
-    public createEthKeyPair(password:string) : {pubKey: string, privKeySeed: string}
+    constructor (private secStorage:SecureStorageInterface, privateKey: typeof PrivateKey) {}
+
+    async createEthKeyPair(password:string) : Promise<{pubKey: string, privKeyMnemonic: string}>
     {
-        //@Todo check if there is a private key and exit
+        //Exit if key exist
+        if(true === await this.secStorage.hasItem(EthUtils.PRIV_KEY_SS_NAME)){
+            throw new EthKeyAlreadyExist();
+        }
 
-        const privKey:PrivateKey = createKey();
-        const encryptedPrivKey:string = '';
-        const pubKey:string = privateToPublic(privKey.getPrivKey());
-        const privKeySeed:string = entropyToMnemonic(privKey.getPrivKey());
+        //Private key
+        const privKey:PrivateKey = PrivateKey.factory();
 
-        //Todo save encrypted private key to secure storage (waiting for pull request which also contains the crypto library)
+        if(!isValidPrivate(privKey.getPrivKeyBuffer())){
+            throw new InvalidPrivateKey();
+        }
+
+        //Public key
+        const pubKey:Buffer = privateToPublic(privKey.getPrivKeyBuffer());
+
+        if(!isValidPublic(pubKey)){
+            throw new InvalidPublicKey();
+        }
+
+        //Save encrypted key
+        await this.secStorage.setItem(
+            EthUtils.PRIV_KEY_SS_NAME,
+            AES.encrypt(privKey.getPrivKey(), password).toString()
+        );
 
         return {
-            pubKey: pubKey,
-            privKeySeed: privKeySeed
+            pubKey: pubKey.toString(),
+            privKeyMnemonic: entropyToMnemonic(privKey.getPrivKey())
         }
     }
 
@@ -32,21 +60,37 @@ export default class EthUtils {
      * @param {string} password
      * @returns {string}
      */
-    public getPrivKey(password:string) : string
+    async getPrivKey(password:string) : Promise<{privKey: string, privKeyMnemonic: string}>
     {
-        //@todo Check if private key exist and exit
-        //@todo return private key as seed
-        return '';
+        //Exit if not exist
+        if(!await this.secStorage.hasItem(EthUtils.PRIV_KEY_SS_NAME)){
+            throw new EthKeyDoesNotExist();
+        }
+
+        //Fetched encrypted private key
+        const encrPrivKey:string = await this.secStorage.getItem(EthUtils.PRIV_KEY_SS_NAME);
+
+        //Decrypted priv key
+        const decrPrivKey:PrivateKey = new PrivateKey(new Buffer(AES.decrypt(encrPrivKey, password).toString(enc.Utf8), 'hex'));
+
+        //Exit if decryption failed or private key is invalid
+        if(!isValidPrivate(decrPrivKey.getPrivKeyBuffer())){
+            throw new InvalidPrivateKey("The private key is invalid or the decryption failed");
+        }
+
+        return {
+            privKey: decrPrivKey.getPrivKey(),
+            privKeyMnemonic: entropyToMnemonic(decrPrivKey.getPrivKey())
+        };
     }
 
     /**
      *
-     * @returns {boolean}
+     * @returns {Promise<boolean>}
      */
-    public hasPrivKey() : boolean
+    async hasPrivKey() : Promise <boolean>
     {
-        //@todo check if private key exist's
-        return false;
+        return this.secStorage.hasItem(EthUtils.PRIV_KEY_SS_NAME);
     }
 
 }
