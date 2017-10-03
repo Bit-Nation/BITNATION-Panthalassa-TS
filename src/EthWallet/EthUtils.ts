@@ -12,6 +12,9 @@ export class InvalidPrivateKey extends Error{}
 
 export class InvalidPublicKey extends Error{}
 
+/**
+ * Contains helper method's to interact with everything that is ethereum related
+ */
 export class EthUtils {
 
     /**
@@ -20,8 +23,17 @@ export class EthUtils {
      */
     static PRIV_KEY_SS_NAME = 'private_ethereum_key';
 
+    /**
+     *
+     * @param {SecureStorageInterface} secStorage
+     * @param {typeof PrivateKey} privateKey
+     */
     constructor (private secStorage:SecureStorageInterface, privateKey: typeof PrivateKey) {}
 
+    /**
+     * Create's an ethereum keypair and save it encrypted by the given password
+     * @param {string} password
+     */
     async createEthKeyPair(password:string) : Promise<{pubKey: string, privKeyMnemonic: string}>
     {
         //Exit if key exist
@@ -56,7 +68,7 @@ export class EthUtils {
     }
 
     /**
-     * Return's the private key as seed (bip39) or throw error if decryption fail's.
+     * Return's the private key as mnemonic (bip39) or throw error if decryption fail's / private key is invalid
      * @param {string} password
      * @returns {string}
      */
@@ -73,6 +85,8 @@ export class EthUtils {
         //Decrypted priv key
         const decrPrivKey:PrivateKey = new PrivateKey(new Buffer(AES.decrypt(encrPrivKey, password).toString(enc.Utf8), 'hex'));
 
+        //@todo add check if encryption failed
+
         //Exit if decryption failed or private key is invalid
         if(!isValidPrivate(decrPrivKey.getPrivKeyBuffer())){
             throw new InvalidPrivateKey("The private key is invalid or the decryption failed");
@@ -85,7 +99,7 @@ export class EthUtils {
     }
 
     /**
-     *
+     * Proves if user has a private key
      * @returns {Promise<boolean>}
      */
     async hasPrivKey() : Promise <boolean>
