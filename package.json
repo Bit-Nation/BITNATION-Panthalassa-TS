@@ -43,7 +43,7 @@
     "build:dev": "rm -rf ./dist && tsc",
     "build:prod": "rm -rf ./dist && tsc -p tsconfig.prod.json",
     "postinstall": "npm run build",
-    "docs": "npm run build:prod && typedoc --out docs"
+    "docs": "npm run build:prod && typedoc --out docs --name 'Panthalassa (Typescript implementation)'"
   },
   "engines": {
     "node": ">=6.11.3"
