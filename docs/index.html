@@ -1,0 +1,218 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Panthalassa (Typescript implementation)</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">Panthalassa (Typescript implementation)</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> Panthalassa (Typescript implementation)</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p><a href="https://semaphoreci.com/florianlenz/bitnation-panthalassa-ts"><img src="https://semaphoreci.com/api/v1/florianlenz/bitnation-panthalassa-ts/branches/develop/badge.svg" alt="Build Status"></a></p>
+				<p><a href="http://ipfs.io/ipfs/QmWgdzcFw9WtYr6E9sYUJ3SLMX5nht7BxskASXsnUrGkjm">Docs</a></p>
+				<h1 id="bitnation-panthalassa-ts">BITNATION-Panthalassa-TS</h1>
+				<p>This is a TypeScript(TS) implementation of <a href="https://docs.google.com/document/d/1qdniz9XerITfhinkZev98w2vnSKkP4p5iwqYk4ajK-Y/edit?ts=5968c50e#heading=h.5x0d5h95i329">panthalassa</a>. TS is a compiled programming laguage. In the case of typescript it get&#39;s compiled to normal JavaScript(JS). The compiled JS can found in the dist folder.</p>
+				<h3 id="command-s">Command&#39;s</h3>
+				<p>Run all the command&#39;s via the CLI</p>
+				<ul>
+					<li><code>npm run build</code> compiles the TS to JS</li>
+				</ul>
+				<h3 id="contribution-development">Contribution &amp; Development</h3>
+				<p>Feel free to have a look at the Issue section and take what ever you want. Feel free to ask questions.</p>
+				<p>We are using the last LTS node js release (6.11.3).</p>
+				<p>A docker setup is provided. To use it, please follow the step&#39;s:</p>
+				<ol>
+					<li>Clone the repository and switch into it</li>
+					<li>Get <a href="https://docker.com">docker</a></li>
+					<li>Run <code>docker-compose up -d</code> to bring up the container</li>
+					<li>Run <code>docker-compose exec node bash</code> to enter the container</li>
+				</ol>
+				<p><strong>Useful docker commands</strong></p>
+				<ul>
+					<li>Run <code>exit</code> in the container to exit</li>
+					<li>Run <code>docker-compose down</code> to destroy the container</li>
+					<li>Run <code>docker-compose stop</code> to shutdown the container</li>
+				</ul>
+				<p><strong>Updated the documentation</strong></p>
+				<ol>
+					<li>Get <a href="https://ipfs.io/">IPFS</a></li>
+					<li>Start the ipfs daemon <code>ipfs daemon</code></li>
+					<li>Add the docs folder to ipfs (<code>ipfs add -r docs</code>)</li>
+					<li>Removed the hash after <code>../ipfs/</code> (at the top of this readme file) with the new hash printed in the commandline.</li>
+				</ol>
+				<h3 id="how-to-use-the-documentation-">How to use the Documentation?</h3>
+				<p>First, let me explain the project structure. In the project root you see a <code>src</code> folder it contains all the typescript sources files. So when we run <code>npm run build</code> the source get&#39;s compiled into javascript to the dist folder. So the file <code>src/EthWallet/EthUtils.ts</code>(which is the typescript source file) get&#39;s compiled to <code>dist/EthWallet/EthUtils.js</code>. This is important to understand since the documentation is generated from the <code>src</code> folder. So you won&#39;t be able to use the <code>src/EthWallet/EthUtils.ts</code> instead please use the quil
+				livant file in the <code>dist</code> folder. </p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_ethwallet_ethutils_.html">"<wbr>Eth<wbr>Wallet/<wbr>Eth<wbr>Utils"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_ethwallet_privatekey_.html">"<wbr>Eth<wbr>Wallet/<wbr>Private<wbr>Key"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_filesystem_filesysteminterface_.html">"<wbr>File<wbr>System/<wbr>File<wbr>System<wbr>Interface"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_filesystem_nodejsfs_.html">"<wbr>File<wbr>System/<wbr>Node<wbr>JsFs"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_ipfs_.html">"<wbr>Ipfs"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_repo_.html">"<wbr>Repo"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_securestorage_nodejssecurestorage_.html">"<wbr>Secure<wbr>Storage/<wbr>Node<wbr>JsSecure<wbr>Storage"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_securestorage_reactnativesecurestorage_.html">"<wbr>Secure<wbr>Storage/<wbr>React<wbr>Native<wbr>Secure<wbr>Storage"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_securestorage_securestorageinterface_.html">"<wbr>Secure<wbr>Storage/<wbr>Secure<wbr>Storage<wbr>Interface"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_valueobjects_.html">"<wbr>Value<wbr>Objects"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_index_.html">"index"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
