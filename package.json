@@ -2,8 +2,8 @@
   "name": "panthalassa-ts",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/PanthalassaApi.js",
+  "types": "./dist/PanthalassaApi.d.ts",
   "dependencies": {
     "bip39": "^2.4.0",
     "ethereumjs-util": "^5.1.2",
