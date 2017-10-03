@@ -5,6 +5,10 @@ import {IpfsAddedFileResponse} from './ValueObjects'
 export default class Repo
 {
 
+    /**
+     *
+     * @param {FileSystemInterface} fs
+     */
     constructor(private fs: FileSystemInterface) {}
 
     /**
