@@ -39,11 +39,12 @@
     }
   },
   "scripts": {
-    "test": "npm run build && jest --verbose",
-    "build:dev": "rm -rf ./dist && tsc",
-    "build:prod": "rm -rf ./dist && tsc -p tsconfig.prod.json",
+    "test": "npm run build:dev && jest --verbose",
+    "build:dev": "rm -rf ./dist && tsc -p tsconfig.dev.json",
+    "build:prod": "rm -rf ./dist && tsc",
+    
     "postinstall": "npm run build",
-    "docs": "npm run build:prod && typedoc --out docs --name 'Panthalassa (Typescript implementation)'"
+    "docs": "npm run build:prod && typedoc src --out docs --name 'Panthalassa (Typescript implementation)' --excludePrivate"
   },
   "engines": {
     "node": ">=6.11.3"
