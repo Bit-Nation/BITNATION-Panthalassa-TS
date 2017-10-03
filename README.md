@@ -1,6 +1,6 @@
 [![Build Status](https://semaphoreci.com/api/v1/florianlenz/bitnation-panthalassa-ts/branches/develop/badge.svg)](https://semaphoreci.com/florianlenz/bitnation-panthalassa-ts)
 
-[Docs](http://ipfs.io/ipfs/QmWgdzcFw9WtYr6E9sYUJ3SLMX5nht7BxskASXsnUrGkjm)
+[Docs](http://ipfs.io/ipfs/QmdMtKDBcXEMGisBZhUNys8ji5vevaEp76ovCyBTzvcEFM)
 
 # BITNATION-Panthalassa-TS
 This is a TypeScript(TS) implementation of [panthalassa](https://docs.google.com/document/d/1qdniz9XerITfhinkZev98w2vnSKkP4p5iwqYk4ajK-Y/edit?ts=5968c50e#heading=h.5x0d5h95i329). TS is a compiled programming laguage. In the case of typescript it get's compiled to normal JavaScript(JS). The compiled JS can found in the dist folder.
@@ -34,5 +34,4 @@ A docker setup is provided. To use it, please follow the step's:
 4. Removed the hash after `../ipfs/` (at the top of this readme file) with the new hash printed in the commandline.
 
 ### How to use the Documentation?
-First, let me explain the project structure. In the project root you see a `src` folder it contains all the typescript sources files. So when we run `npm run build` the source get's compiled into javascript to the dist folder. So the file `src/EthWallet/EthUtils.ts`(which is the typescript source file) get's compiled to `dist/EthWallet/EthUtils.js`. This is important to understand since the documentation is generated from the `src` folder. So you won't be able to use the `src/EthWallet/EthUtils.ts` instead please use the quil
-livant file in the `dist` folder. 
+First, let me explain the project structure. In the project root you see a `src` folder it contains all the typescript sources files. So when we run `npm run build` the source get's compiled into javascript to the dist folder. So the file `src/EthWallet/EthUtils.ts`(which is the typescript source file) get's compiled to `dist/EthWallet/EthUtils.js`. This is important to understand since the documentation is generated from the `src` folder. So you won't be able to use the `src/EthWallet/EthUtils.ts` instead please use the equivalent file in the `dist` folder. 
