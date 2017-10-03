@@ -20,7 +20,8 @@
     "@types/jest": "^21.1.1",
     "nodemon": "^1.12.0",
     "ts-jest": "^21.0.1",
-    "ts-mockito": "^2.2.0"
+    "ts-mockito": "^2.2.0",
+    "typedoc": "^0.8.0"
   },
   "jest": {
     "transform": {
@@ -39,8 +40,10 @@
   },
   "scripts": {
     "test": "npm run build && jest --verbose",
-    "build": "tsc",
-    "postinstall": "npm run build"
+    "build:dev": "rm -rf ./dist && tsc",
+    "build:prod": "rm -rf ./dist && tsc -p tsconfig.prod.json",
+    "postinstall": "npm run build",
+    "docs": "npm run build:prod && typedoc --out docs"
   },
   "engines": {
     "node": ">=6.11.3"
