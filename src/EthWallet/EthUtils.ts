@@ -12,6 +12,8 @@ export class InvalidPrivateKey extends Error{}
 
 export class InvalidAddress extends Error{}
 
+export class InvalidPublicKey extends Error{}
+
 /**
  * Contains helper method's to interact with everything that is ethereum related
  */
