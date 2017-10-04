@@ -1,12 +1,12 @@
-import {EthKeyAlreadyExist, EthUtils, EthKeyDoesNotExist} from "../../src/EthWallet/EthUtils";
+import {EthKeyAlreadyExist, EthKeyDoesNotExist, EthUtils} from "../../src/EthWallet/EthUtils";
 import {SecureStorageInterface} from "../../src/SecureStorage/SecureStorageInterface";
 import {NodeJsSecureStorage} from '../../src/SecureStorage/NodeJsSecureStorage'
 import {instance, mock, when} from "ts-mockito";
 import PrivateKey from "../../src/EthWallet/PrivateKey";
 import {AES, enc} from 'crypto-js'
-import {mnemonicToEntropy, entropyToMnemonic} from 'bip39'
+import {mnemonicToEntropy, entropyToMnemonic, validateMnemonic} from 'bip39'
 import {unlinkSync} from "fs";
-import {isValidPrivate} from "ethereumjs-util";
+import {isValidPrivate, isValidAddress} from "ethereumjs-util";
 
 const PRIVATE_TEST_KEY = "9b4b3da7d2d1c8749743a4ac17c151405f7900832bb4cf88735721cef4627096";
 
@@ -60,9 +60,6 @@ describe('EthUtils', () => {
             //Create keypair
             const keyPair = await eu.createEthKeyPair('my_secret_password');
 
-            //Ensure keypair exist
-            expect(await secureStorage.hasItem(EthUtils.PRIV_KEY_SS_NAME)).toBeTruthy();
-
             //Decrypt private key
             const decryptedPrivateKey = AES.decrypt(
                 await secureStorage.getItem(EthUtils.PRIV_KEY_SS_NAME),
@@ -76,7 +73,28 @@ describe('EthUtils', () => {
             expect(entropyToMnemonic(decryptedPrivateKey)).toEqual(keyPair.privKeyMnemonic);
 
             unlinkSync(storageName)
-        })
+        });
+
+        test('create valid key pair', async () => {
+
+            const secureStorageName = 'secure_storage'+Math.random();
+            const storagePassword = 'password';
+
+            //secure storage
+            let secureStorage:NodeJsSecureStorage = new NodeJsSecureStorage(secureStorageName, storagePassword);
+            secureStorage.init();
+
+            //Eth utils
+            const eu:EthUtils = new EthUtils(secureStorage, PrivateKey);
+
+            const keyPair:{address: string, privKeyMnemonic: string} = await eu.createEthKeyPair('pwd');
+
+            //expect(isValidPrivate(new Buffer(mnemonicToEntropy(keyPair.privKeyMnemonic), 'hex'))).toBeTruthy();
+            expect(isValidAddress(keyPair.address)).toBeTruthy();
+            expect(validateMnemonic(keyPair.privKeyMnemonic)).toBeTruthy();
+
+            unlinkSync(secureStorageName);
+        });
 
     });
 
@@ -180,6 +198,29 @@ describe('EthUtils', () => {
 
         })
 
-    })
+    });
+
+    describe('getAddress', () => {
+
+        test('fetch successfully', async () => {
+
+            const storageName = 'ss'+Math.random();
+
+            //secure storage
+            const ss:NodeJsSecureStorage = new NodeJsSecureStorage(storageName, 'password');
+            ss.init();
+
+            //Eth Utils
+            const ethUtils = new EthUtils(ss, PrivateKey);
+            await ethUtils.createEthKeyPair('passwd');
+
+            //get address and assert it
+            expect(isValidAddress(await ethUtils.getAddress('passwd'))).toBeTruthy();
+
+            unlinkSync(storageName);
+
+        })
+
+    });
 
 });

@@ -1,6 +1,6 @@
 import {entropyToMnemonic, mnemonicToEntropy, mnemonicToSeedHex} from 'bip39'
 import PrivateKey from './PrivateKey'
-import {privateToPublic, isValidPublic, isValidPrivate} from 'ethereumjs-util'
+import {addHexPrefix, isValidPrivate, privateToAddress, isValidAddress} from 'ethereumjs-util'
 import {SecureStorageInterface} from './../SecureStorage/SecureStorageInterface';
 import {AES, enc} from 'crypto-js';
 
@@ -10,7 +10,7 @@ export class EthKeyDoesNotExist extends Error{}
 
 export class InvalidPrivateKey extends Error{}
 
-export class InvalidPublicKey extends Error{}
+export class InvalidAddress extends Error{}
 
 /**
  * Contains helper method's to interact with everything that is ethereum related
@@ -34,7 +34,7 @@ export class EthUtils {
      * Create's an ethereum keypair and save it encrypted by the given password
      * @param {string} password
      */
-    async createEthKeyPair(password:string) : Promise<{pubKey: string, privKeyMnemonic: string}>
+    async createEthKeyPair(password:string) : Promise<{address: string, privKeyMnemonic: string}>
     {
         //Exit if key exist
         if(true === await this.secStorage.hasItem(EthUtils.PRIV_KEY_SS_NAME)){
@@ -48,11 +48,11 @@ export class EthUtils {
             throw new InvalidPrivateKey();
         }
 
-        //Public key
-        const pubKey:Buffer = privateToPublic(privKey.getPrivKeyBuffer());
+        //Private key
+        let address:string = addHexPrefix(privateToAddress(privKey.getPrivKeyBuffer()).toString('hex'));
 
-        if(!isValidPublic(pubKey)){
-            throw new InvalidPublicKey();
+        if(!isValidAddress(address)){
+            throw new InvalidAddress();
         }
 
         //Save encrypted key
@@ -62,7 +62,7 @@ export class EthUtils {
         );
 
         return {
-            pubKey: pubKey.toString(),
+            address: address,
             privKeyMnemonic: entropyToMnemonic(privKey.getPrivKey())
         }
     }
@@ -96,6 +96,19 @@ export class EthUtils {
             privKey: decrPrivKey.getPrivKey(),
             privKeyMnemonic: entropyToMnemonic(decrPrivKey.getPrivKey())
         };
+    }
+
+    /**
+     *
+     * @param password
+     * @returns {Promise<Buffer>}
+     */
+    async getAddress(password) : Promise<string> {
+
+        const fetchedPrivKey = await this.getPrivKey(password);
+
+        return addHexPrefix(privateToAddress(new Buffer(fetchedPrivKey.privKey, 'hex')).toString('hex'));
+
     }
 
     /**
