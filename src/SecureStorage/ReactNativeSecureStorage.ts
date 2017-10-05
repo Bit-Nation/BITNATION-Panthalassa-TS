@@ -2,7 +2,7 @@ import {SecureStorageInterface,SecureStorageManager} from './SecureStorageInterf
 import SInfo from 'react-native-sensitive-info';
 
 // TODO: This code is not tested at all
-class ReactNativeSecureStorage implements SecureStorageInterface {
+export class ReactNativeSecureStorage implements SecureStorageInterface {
     readonly options: any;
 
     /**
@@ -97,7 +97,7 @@ class ReactNativeSecureStorage implements SecureStorageInterface {
     }
 }
 
-class ReactNativeSecureStorageManager extends SecureStorageManager {
+export class ReactNativeSecureStorageManager extends SecureStorageManager {
 
     /**
      *
