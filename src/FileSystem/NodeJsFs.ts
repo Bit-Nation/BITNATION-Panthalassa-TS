@@ -1,5 +1,5 @@
 import fs = require('fs');
-import {FileSystemInterface, FileDoesNotExistError} from './FileSystemInterface'
+import {FileSystemInterface} from './FileSystemInterface'
 import Path = require('path');
 
 export class NodeJsFs implements FileSystemInterface

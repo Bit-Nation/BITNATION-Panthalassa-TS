@@ -1,5 +1,5 @@
 import {isValidAddress, } from 'ethereumjs-util'
-import {InvalidAddress} from "./EthWallet/EthUtils";
+import {InvalidAddress} from "./Errors";
 
 export class EthAddress
 {
