@@ -7,3 +7,6 @@ export class InvalidPrivateKey extends Error{}
 export class InvalidAddress extends Error{}
 
 export class InvalidPublicKey extends Error{}
+
+export class FileDoesNotExistError extends Error{}
+

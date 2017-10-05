@@ -1,5 +1,3 @@
-export class FileDoesNotExistError extends Error{}
-
 export interface FileSystemInterface {
 
     /**
