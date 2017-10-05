@@ -3,16 +3,8 @@ import PrivateKey from './PrivateKey'
 import {addHexPrefix, isValidPrivate, privateToAddress, isValidAddress} from 'ethereumjs-util'
 import {SecureStorageInterface} from './../SecureStorage/SecureStorageInterface';
 import {AES, enc} from 'crypto-js';
-
-export class EthKeyAlreadyExist extends Error{}
-
-export class EthKeyDoesNotExist extends Error{}
-
-export class InvalidPrivateKey extends Error{}
-
-export class InvalidAddress extends Error{}
-
-export class InvalidPublicKey extends Error{}
+import {EthKeyAlreadyExist, InvalidAddress, InvalidPrivateKey} from "../Errors";
+import {EthKeyDoesNotExist} from "../../dist/src/EthWallet/EthUtils";
 
 /**
  * Contains helper method's to interact with everything that is ethereum related
