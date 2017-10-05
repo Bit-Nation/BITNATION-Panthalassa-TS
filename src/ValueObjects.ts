@@ -1,3 +1,6 @@
+import {isValidAddress, } from 'ethereumjs-util'
+import {InvalidAddress} from "./EthWallet/EthUtils";
+
 export class EthAddress
 {
     /**
@@ -27,10 +30,16 @@ export class About
      *
      * @param {string} pseudo
      * @param {string} image
-     * @param {EthAddress} ethAddress
+     * @param {string} ethAddress
      * @param {string} description
      */
-    constructor(private pseudo: string, private image: string, private ethAddress: EthAddress, private description: string){}
+    constructor(private pseudo: string, private image: string, private ethAddress: string, private description: string){
+
+        if(!isValidAddress(ethAddress)){
+            throw new InvalidAddress()
+        }
+
+    }
 
     /**
      *
@@ -52,9 +61,9 @@ export class About
 
     /**
      *
-     * @returns {EthAddress}
+     * @returns {string}
      */
-    public getEthAddress() : EthAddress
+    public getEthAddress() : string
     {
         return this.ethAddress;
     }
