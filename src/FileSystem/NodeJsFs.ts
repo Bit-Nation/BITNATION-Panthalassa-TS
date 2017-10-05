@@ -1,10 +1,6 @@
 import fs = require('fs');
-
-import FileSystemInterface from './FileSystemInterface'
+import {FileSystemInterface, FileDoesNotExistError} from './FileSystemInterface'
 import Path = require('path');
-import Ipfs from "../Ipfs";
-import {IpfsAddedFileResponse} from "../ValueObjects";
-const IpfsNode = require('ipfs');
 
 export class NodeJsFs implements FileSystemInterface
 {
@@ -13,47 +9,103 @@ export class NodeJsFs implements FileSystemInterface
      *
      * @param {string} repoPath
      * @param {typeof Path} path
-     * @param {Ipfs} ipfs
      */
-    constructor(private repoPath: string, private path: typeof Path, private ipfs: Ipfs) { }
+    constructor(private repoPath: string, private path: typeof Path) { }
 
     private encoding: 'utf8';
 
     /**
+     * Write file to filesystem
      *
      * @param {string} fileName
      * @param {string} content
      * @returns {Promise<string>}
      */
-    writeFile(fileName: string, content: string): Promise<IpfsAddedFileResponse> {
+    writeFile(fileName: string, content: string): Promise<{}> {
 
         let filePath = this.path.normalize(this.repoPath+fileName);
 
-        return new Promise<IpfsAddedFileResponse>((resolve, reject) => {
+        return new Promise((resolve, reject) => {
 
             fs.writeFile(filePath, content, this.encoding, (err) => {
 
-                //Reject on error
                 if(err){
                     reject(err);
                 }
 
-                //Add file to ipfs
-                this.ipfs.addFile(fileName, new Buffer(content))
-                    .then((ipfsFile: IpfsAddedFileResponse) => {
-                        resolve(ipfsFile);
-                    })
-                    .catch((err) => {
-                        reject(err);
-                    });
+                resolve(filePath)
 
             });
 
         });
+
     }
+
+    /**
+     *
+     * @param {string} fileName
+     * @returns {Promise<string>}
+     */
+    readFile(fileName:string) : Promise<{}> {
+
+        let filePath = this.path.normalize(this.repoPath+fileName);
+
+        return new Promise(((resolve, reject) => {
+
+            this.fileExist(fileName)
+                .then(writtenFileName => {
+
+                    fs.readFile(filePath, 'utf8', (err, data) => {
+
+                        if(err){
+                            reject(err);
+                        }
+
+                        resolve(data);
+
+                    });
+
+
+                })
+                .catch(err => reject(err))
+
+        }));
+
+    }
+
+    /**
+     *
+     * @param {string} fileName
+     * @returns {boolean}
+     */
+    fileExist(fileName:string) : Promise<{}> {
+
+        let filePath = this.path.normalize(this.repoPath+fileName);
+
+        return new Promise((resolve, reject) => {
+
+            fs.access(filePath, fs.constants.R_OK | fs.constants.W_OK, (err) => {
+
+                if(err){
+                    reject(err);
+                }
+
+                resolve(true);
+
+            });
+
+        });
+
+    }
+
 }
 
-export function create(repoPath: string) : NodeJsFs
+/**
+ *
+ * @param {string} repoPath
+ * @returns {NodeJsFs}
+ */
+export function factory(repoPath: string) : NodeJsFs
 {
-    return new NodeJsFs(repoPath, Path, new Ipfs(new IpfsNode()));
+    return new NodeJsFs(repoPath, Path);
 }
