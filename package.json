@@ -2,7 +2,7 @@
   "name": "panthalassa-ts",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/PanthalassaApi.js",
+  "main": "./index.js",
   "types": "./dist/PanthalassaApi.d.ts",
   "dependencies": {
     "@types/crypto-js": "^3.1.35",
@@ -43,7 +43,7 @@
     "test": "npm run build:dev && jest --verbose",
     "build:dev": "rm -rf ./dist && tsc -p tsconfig.dev.json",
     "build:prod": "rm -rf ./dist && tsc && ./node_modules/.bin/webpack --config webpack.config.js",
-    "postinstall": "npm run build",
+    "postinstall": "npm run build:prod",
     "docs": "npm run build:prod && typedoc src --out docs --name 'Panthalassa (Typescript implementation)' --excludePrivate"
   },
   "engines": {
