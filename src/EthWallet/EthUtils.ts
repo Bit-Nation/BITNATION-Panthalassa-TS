@@ -4,7 +4,7 @@ import {addHexPrefix, isValidPrivate, privateToAddress, isValidAddress} from 'et
 import {SecureStorageInterface} from './../SecureStorage/SecureStorageInterface';
 import {AES, enc} from 'crypto-js';
 import {EthKeyAlreadyExist, InvalidAddress, InvalidPrivateKey} from "../Errors";
-import {EthKeyDoesNotExist} from "../../src/Errors";
+import {EthKeyDoesNotExist} from "./../Errors";
 
 /**
  * Contains helper method's to interact with everything that is ethereum related
