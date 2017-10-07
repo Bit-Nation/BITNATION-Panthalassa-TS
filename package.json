@@ -42,7 +42,7 @@
   "scripts": {
     "test": "npm run build:dev && jest --verbose",
     "build:dev": "rm -rf ./dist && tsc -p tsconfig.dev.json",
-    "build:prod": "rm -rf ./dist && tsc && ./node_modules/.bin/browserify ./dist/PanthalassaApi.js --outfile index.js",
+    "build:prod": "rm -rf ./dist && tsc",
     "postinstall": "npm run build:prod",
     "docs": "npm run build:prod && typedoc src --out docs --name 'Panthalassa (Typescript implementation)' --excludePrivate"
   },
