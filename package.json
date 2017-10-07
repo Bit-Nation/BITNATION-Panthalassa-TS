@@ -7,6 +7,7 @@
   "dependencies": {
     "@types/crypto-js": "^3.1.35",
     "@types/node": "^8.0.31",
+    "BITNATION-Panthalassa-TS-fs-interface": "git+https://github.com/Bit-Nation/BITNATION-Panthalassa-TS-fs-interface.git#ee0e5c9d0382cf3880b125d0427f005da8ae6fce",
     "bip39": "^2.4.0",
     "crypto-js": "^3.1.9-1",
     "ethereumjs-util": "^5.1.2",
