@@ -1,5 +1,5 @@
 import Repo from './Repo';
-import {FileSystemInterface} from './FileSystem/FileSystemInterface'
+import FileSystemInterface from 'BITNATION-Panthalassa-TS-fs-interface/FileSystemInterface';
 import {EthUtils} from "./EthWallet/EthUtils";
 import {SecureStorageInterface} from "./SecureStorage/SecureStorageInterface";
 import PrivateKey from "./EthWallet/PrivateKey";
