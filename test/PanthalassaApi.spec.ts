@@ -38,19 +38,12 @@ describe('panthalassa api', () => {
             const about:About = mock(About);
 
             //Repo mock
-            const RepoMock:Repo = mock(Repo);
+            const repoMock:Repo = mock(Repo);
+            when(repoMock.setAbout(about)).thenReturn(new Promise((resolve, reject) => resolve({})));
 
             const ethUtilsMock:EthUtils = mock(EthUtils);
 
-            //stub method
-            when(RepoMock.setAbout(instance(about))).thenReturn(
-                new Promise((resolve, reject) => setTimeout(
-                    function(){resolve()},
-                    10000
-                ))
-            );
-
-            const panthalassa = new PanthalassaApi(instance(RepoMock), instance(ethUtilsMock));
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
 
             expect(JSON.stringify(await panthalassa.repoSetAbout(about))).toBe("{}");
 
