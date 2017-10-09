@@ -13,7 +13,6 @@
     "crypto-js": "^3.1.9-1",
     "ethereumjs-util": "^5.1.2",
     "ipfs": "^0.26.0",
-    "react-native-sensitive-info": "^5.1.0",
     "typescript": "^2.5.2"
   },
   "devDependencies": {
