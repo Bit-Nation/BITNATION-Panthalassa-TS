@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@types/jest": "^21.1.1",
+    "BITNATION-Panthalassa-TS-node-js-fs": "git+https://github.com/Bit-Nation/BITNATION-Panthalassa-TS-node-js-fs.git#9e36aba6aaaccbc7495214c7807f3ab2a25ed5e2",
     "BITNATION-Panthalassa-TS-node-js-secure-storage": "git+https://github.com/Bit-Nation/BITNATION-Panthalassa-TS-node-js-secure-storage.git#ddbc69414c6cf7b6368b56f8595c46779807eeb2",
     "fs-extra": "^4.0.2",
     "jest": "^21.2.1",
