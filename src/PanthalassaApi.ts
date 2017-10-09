@@ -1,8 +1,8 @@
 import Repo from './Repo';
 import FileSystemInterface from 'BITNATION-Panthalassa-TS-fs-interface/FileSystemInterface';
 import {EthUtils} from "./EthWallet/EthUtils";
-import PrivateKey from "./EthWallet/PrivateKey";
 import {SecureStorageInterface} from "BITNATION-Panthalassa-TS-secure-storage-interface/SecureStorageInterface";
+import Utils from "./Utils";
 
 export class PanthalassaApi
 {
@@ -24,9 +24,13 @@ export class PanthalassaApi
  */
 export function factory(fs:FileSystemInterface, secStorage:SecureStorageInterface){
 
+    const utils:Utils = new Utils();
+
+    const ethUtils:EthUtils = new EthUtils(secStorage, utils);
+
     return new PanthalassaApi(
-        new Repo(fs, new EthUtils(secStorage, PrivateKey)),
-        new EthUtils(secStorage, PrivateKey)
+        new Repo(fs, ethUtils),
+        ethUtils
     );
 
 }

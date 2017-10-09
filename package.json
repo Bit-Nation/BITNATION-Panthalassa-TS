@@ -30,15 +30,7 @@
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "collectCoverage": true,
-    "mapCoverage": true,
-    "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": 80
-      }
-    }
+    "mapCoverage": true
   },
   "scripts": {
     "test": "npm run build:dev && jest --verbose",

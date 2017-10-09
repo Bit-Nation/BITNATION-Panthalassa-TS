@@ -1,6 +1,7 @@
-import PrivateKey from './../../src/EthWallet/PrivateKey';
 import {isValidPrivate} from 'ethereumjs-util';
 import {InvalidPrivateKey} from "../../src/Errors";
+import {PrivateKey} from "../../src/ValueObjects";
+import Utils from "../../src/Utils";
 
 // TODO: Coverage is still not reported correctly. See: https://stackoverflow.com/questions/41188484/jest-typescript-ts-jest-coverage-is-slightly-incorrect/43119810
 describe('private key factory', () => {
@@ -8,8 +9,11 @@ describe('private key factory', () => {
     //Test the createKey function of PrivKeyFactory
     test('createKey', async () => {
 
+        //Utils
+        const utils:Utils = new Utils;
+
         //Create key
-        const key:PrivateKey = PrivateKey.factory();
+        const key:PrivateKey = utils.manufakturPrivKey();
 
         expect(key).toBeInstanceOf(PrivateKey);
 
