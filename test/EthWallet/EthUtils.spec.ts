@@ -7,6 +7,7 @@ import {mnemonicToEntropy, entropyToMnemonic, validateMnemonic} from 'bip39'
 import {unlinkSync} from "fs";
 import {isValidPrivate, isValidAddress} from "ethereumjs-util";
 import {EthKeyAlreadyExist, EthKeyDoesNotExist} from "../../src/Errors";
+import {NodeJsSecureStorage} from "BITNATION-Panthalassa-TS-node-js-secure-storage/NodeJsSecureStorage"
 
 const PRIVATE_TEST_KEY = "9b4b3da7d2d1c8749743a4ac17c151405f7900832bb4cf88735721cef4627096";
 
