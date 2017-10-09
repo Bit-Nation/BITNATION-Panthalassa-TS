@@ -1,9 +1,10 @@
 import {entropyToMnemonic, mnemonicToEntropy, mnemonicToSeedHex} from 'bip39'
-import PrivateKey from './PrivateKey'
 import {addHexPrefix, isValidPrivate, privateToAddress, isValidAddress} from 'ethereumjs-util'
 import {SecureStorageInterface} from 'BITNATION-Panthalassa-TS-secure-storage-interface/SecureStorageInterface';
 import {AES, enc} from 'crypto-js';
 import {EthKeyAlreadyExist, InvalidAddress, InvalidPrivateKey, EthKeyDoesNotExist} from "../Errors";
+import Utils from "../Utils";
+import {PrivateKey} from '../ValueObjects'
 
 /**
  * Contains helper method's to interact with everything that is ethereum related
@@ -19,9 +20,9 @@ export class EthUtils {
     /**
      *
      * @param {SecureStorageInterface} secStorage
-     * @param {typeof PrivateKey} privateKey
+     * @param {Utils} utils
      */
-    constructor (private secStorage:SecureStorageInterface, privateKey: typeof PrivateKey) {}
+    constructor (private secStorage:SecureStorageInterface, private utils:Utils) {}
 
     /**
      * Create's an ethereum keypair and save it encrypted by the given password
@@ -35,7 +36,7 @@ export class EthUtils {
         }
 
         //Private key
-        const privKey:PrivateKey = PrivateKey.factory();
+        const privKey:PrivateKey = this.utils.manufakturPrivKey();
 
         if(!isValidPrivate(privKey.getPrivKeyBuffer())){
             throw new InvalidPrivateKey();

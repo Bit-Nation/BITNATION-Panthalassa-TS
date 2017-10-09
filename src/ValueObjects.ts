@@ -1,5 +1,6 @@
 import {isValidAddress, } from 'ethereumjs-util'
-import {InvalidAddress} from "./Errors";
+import {InvalidAddress, InvalidPrivateKey} from "./Errors";
+import {isValidPrivate} from 'ethereumjs-util'
 
 export class EthAddress
 {
@@ -97,4 +98,41 @@ export class IpfsAddedFileResponse
     {
         return this.size;
     }
+}
+
+/**
+ * Private Key Value Object
+ */
+export class PrivateKey
+{
+    /**
+     *
+     * @param {Buffer} privKey
+     */
+    public constructor(private privKey: Buffer) {
+
+        if(!isValidPrivate(privKey)){
+            throw new InvalidPrivateKey();
+        }
+
+    }
+
+    /**
+     * Returns the private key as a hex string
+     * @returns {string}
+     */
+    public getPrivKey() : string
+    {
+        return this.privKey.toString('hex');
+    }
+
+    /**
+     * Returns the private key as a buffer
+     * @returns {Buffer}
+     */
+    public getPrivKeyBuffer() : Buffer
+    {
+        return this.privKey;
+    }
+
 }
