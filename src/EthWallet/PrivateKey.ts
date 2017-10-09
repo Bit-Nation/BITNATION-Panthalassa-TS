@@ -1,5 +1,6 @@
 import {randomBytes} from 'crypto';
 import {isValidPrivate} from 'ethereumjs-util';
+import {InvalidPrivateKey} from "../Errors";
 
 /**
  * Private Key Value Object
@@ -13,7 +14,7 @@ export default class PrivateKey
     public constructor(private privKey: Buffer) {
 
         if(!isValidPrivate(privKey)){
-            throw new Error("Private key is invalid")
+            throw new InvalidPrivateKey();
         }
 
     }

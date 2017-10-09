@@ -2,7 +2,7 @@ import Repo from './Repo';
 import FileSystemInterface from 'BITNATION-Panthalassa-TS-fs-interface/FileSystemInterface';
 import {EthUtils} from "./EthWallet/EthUtils";
 import PrivateKey from "./EthWallet/PrivateKey";
-import {SecureStorageInterface} from "./SecureStorage/SecureStorageInterface";
+import {SecureStorageInterface} from "BITNATION-Panthalassa-TS-secure-storage-interface/SecureStorageInterface";
 
 export class PanthalassaApi
 {

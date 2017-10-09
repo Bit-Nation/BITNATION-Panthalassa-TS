@@ -8,17 +8,18 @@
     "@types/crypto-js": "^3.1.35",
     "@types/node": "^8.0.31",
     "BITNATION-Panthalassa-TS-fs-interface": "git+https://github.com/Bit-Nation/BITNATION-Panthalassa-TS-fs-interface.git#ee0e5c9d0382cf3880b125d0427f005da8ae6fce",
+    "BITNATION-Panthalassa-TS-secure-storage-interface": "git+https://github.com/Bit-Nation/BITNATION-Panthalassa-TS-secure-storage-interface.git#f01f532b4e7794ed1f6b708ec9425c3976097f62",
     "bip39": "^2.4.0",
     "crypto-js": "^3.1.9-1",
     "ethereumjs-util": "^5.1.2",
-    "fs-extra": "^4.0.2",
     "ipfs": "^0.26.0",
-    "jest": "^21.2.1",
-    "react-native-sensitive-info": "^5.1.0",
     "typescript": "^2.5.2"
   },
   "devDependencies": {
     "@types/jest": "^21.1.1",
+    "BITNATION-Panthalassa-TS-node-js-secure-storage": "git+https://github.com/Bit-Nation/BITNATION-Panthalassa-TS-node-js-secure-storage.git#ddbc69414c6cf7b6368b56f8595c46779807eeb2",
+    "fs-extra": "^4.0.2",
+    "jest": "^21.2.1",
     "nodemon": "^1.12.0",
     "ts-jest": "^21.0.1",
     "ts-mockito": "^2.2.0",
@@ -32,10 +33,10 @@
     "mapCoverage": true,
     "coverageThreshold": {
       "global": {
-        "branches": 90,
-        "functions": 90,
-        "lines": 90,
-        "statements": 90
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
       }
     }
   },

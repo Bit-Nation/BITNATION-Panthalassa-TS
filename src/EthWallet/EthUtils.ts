@@ -1,10 +1,9 @@
 import {entropyToMnemonic, mnemonicToEntropy, mnemonicToSeedHex} from 'bip39'
 import PrivateKey from './PrivateKey'
 import {addHexPrefix, isValidPrivate, privateToAddress, isValidAddress} from 'ethereumjs-util'
-import {SecureStorageInterface} from './../SecureStorage/SecureStorageInterface';
+import {SecureStorageInterface} from 'BITNATION-Panthalassa-TS-secure-storage-interface/SecureStorageInterface';
 import {AES, enc} from 'crypto-js';
-import {EthKeyAlreadyExist, InvalidAddress, InvalidPrivateKey} from "../Errors";
-import {EthKeyDoesNotExist} from "./../Errors";
+import {EthKeyAlreadyExist, InvalidAddress, InvalidPrivateKey, EthKeyDoesNotExist} from "../Errors";
 
 /**
  * Contains helper method's to interact with everything that is ethereum related
