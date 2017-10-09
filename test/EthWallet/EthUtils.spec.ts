@@ -1,4 +1,4 @@
-import {EthUtils} from "../../src/EthWallet/EthUtils";
+import EthUtils from "../../src/EthWallet/EthUtils";
 import {SecureStorageInterface} from "BITNATION-Panthalassa-TS-secure-storage-interface/SecureStorageInterface";
 import {instance, mock, when} from "ts-mockito";
 import {AES, enc} from 'crypto-js'

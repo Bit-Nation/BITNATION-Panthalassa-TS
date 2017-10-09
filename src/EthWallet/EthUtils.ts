@@ -1,4 +1,4 @@
-import {entropyToMnemonic, mnemonicToEntropy, mnemonicToSeedHex} from 'bip39'
+import {entropyToMnemonic} from 'bip39'
 import {addHexPrefix, isValidPrivate, privateToAddress, isValidAddress} from 'ethereumjs-util'
 import {SecureStorageInterface} from 'BITNATION-Panthalassa-TS-secure-storage-interface/SecureStorageInterface';
 import {AES, enc} from 'crypto-js';
@@ -9,7 +9,7 @@ import {PrivateKey} from '../ValueObjects'
 /**
  * Contains helper method's to interact with everything that is ethereum related
  */
-export class EthUtils {
+export default class EthUtils {
 
     /**
      * key name for the secure storage

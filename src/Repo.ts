@@ -1,6 +1,6 @@
 import {About} from "./ValueObjects";
 import FileSystemInterface from 'BITNATION-Panthalassa-TS-fs-interface/FileSystemInterface';
-import {EthUtils} from "./EthWallet/EthUtils";
+import EthUtils from "./EthWallet/EthUtils";
 import {EthKeyDoesNotExist} from './Errors';
 
 export default class Repo
