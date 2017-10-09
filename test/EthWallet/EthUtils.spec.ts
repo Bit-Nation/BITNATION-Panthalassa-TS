@@ -1,6 +1,5 @@
 import {EthUtils} from "../../src/EthWallet/EthUtils";
-import {SecureStorageInterface} from "../../src/SecureStorage/SecureStorageInterface";
-import {NodeJsSecureStorage} from '../../src/SecureStorage/NodeJsSecureStorage'
+import {SecureStorageInterface} from "BITNATION-Panthalassa-TS-secure-storage-interface/SecureStorageInterface";
 import {instance, mock, when} from "ts-mockito";
 import PrivateKey from "../../src/EthWallet/PrivateKey";
 import {AES, enc} from 'crypto-js'
