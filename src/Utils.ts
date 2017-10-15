@@ -1,4 +1,4 @@
-import * as randomBytes from 'randombytes';
+import {randomBytes} from 'crypto';
 import {PrivateKey} from './ValueObjects';
 
 export default class Utils {
