@@ -2,7 +2,7 @@
   "name": "panthalassa-ts",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/PanthalassaApi.js",
+  "main": "./Panthalassa.js",
   "types": "./dist/PanthalassaApi.d.ts",
   "dependencies": {
     "@types/crypto-js": "^3.1.35",
@@ -10,6 +10,7 @@
     "BITNATION-Panthalassa-TS-fs-interface": "git+https://github.com/Bit-Nation/BITNATION-Panthalassa-TS-fs-interface.git#ee0e5c9d0382cf3880b125d0427f005da8ae6fce",
     "BITNATION-Panthalassa-TS-secure-storage-interface": "git+https://github.com/Bit-Nation/BITNATION-Panthalassa-TS-secure-storage-interface.git#f01f532b4e7794ed1f6b708ec9425c3976097f62",
     "bip39": "^2.4.0",
+    "browserify": "^14.4.0",
     "crypto-js": "^3.1.9-1",
     "ethereumjs-util": "^5.1.2",
     "ipfs": "^0.26.0",
@@ -36,8 +37,9 @@
     "test": "npm run build:dev && jest --verbose",
     "build:dev": "rm -rf ./dist && tsc -p tsconfig.dev.json",
     "build:prod": "rm -rf ./dist && tsc",
-    "postinstall": "npm run build:prod",
-    "docs": "npm run build:prod && typedoc src --out docs --name 'Panthalassa (Typescript implementation)' --excludePrivate"
+    "postinstall": "npm run browserify:prod",
+    "docs": "npm run build:prod && typedoc src --out docs --name 'Panthalassa (Typescript implementation)' --excludePrivate",
+    "browserify:prod": "npm run build:prod && browserify ./dist/PanthalassaApi.js > Panthalassa.js --standalone Panthalassa"
   },
   "engines": {
     "node": ">=6.11.3"
