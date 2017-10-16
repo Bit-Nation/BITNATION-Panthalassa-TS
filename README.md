@@ -3,7 +3,7 @@
 [Docs](http://ipfs.io/ipfs/QmdMtKDBcXEMGisBZhUNys8ji5vevaEp76ovCyBTzvcEFM)
 
 # BITNATION-Panthalassa-TS
-This is a TypeScript(TS) implementation of [panthalassa](https://docs.google.com/document/d/1qdniz9XerITfhinkZev98w2vnSKkP4p5iwqYk4ajK-Y/edit?ts=5968c50e#heading=h.5x0d5h95i329). TS is a compiled programming laguage. In the case of typescript it get's compiled to normal JavaScript(JS). The compiled JS can found in the dist folder.
+This is a TypeScript(TS) implementation of [Panthalassa](https://docs.google.com/document/d/1qdniz9XerITfhinkZev98w2vnSKkP4p5iwqYk4ajK-Y/edit?ts=5968c50e#heading=h.5x0d5h95i329). TS is a compiled programming laguage. In the case of typescript it get's compiled to normal JavaScript(JS). The compiled JS can found in the dist folder.
 
 ### Command's
 Run all the command's via the CLI
