@@ -1,8 +1,10 @@
 import {instance, mock, verify, when} from "ts-mockito";
 import Repo from "../src/Repo";
 import {About} from "../src/ValueObjects"
-import {PanthalassaApi} from "../src/PanthalassaApi";
+import {PanthalassaApi, factory} from "../src/PanthalassaApi";
 import EthUtils from "../src/EthWallet/EthUtils";
+import {NodeJsSecureStorage} from 'BITNATION-Panthalassa-TS-node-js-secure-storage';
+import {NodeJsFs} from 'BITNATION-Panthalassa-TS-node-js-fs'
 
 describe('panthalassa api', () => {
 
@@ -216,5 +218,15 @@ describe('panthalassa api', () => {
         });
 
     });
+
+    test('factory', () => {
+
+        const fs = new NodeJsSecureStorage();
+
+        const secStore = new NodeJsFs();
+        
+        expect(factory(fs, secStore)).toBeInstanceOf(PanthalassaApi);
+
+    })
 
 });
