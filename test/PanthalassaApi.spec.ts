@@ -166,4 +166,55 @@ describe('panthalassa api', () => {
 
     });
 
+    describe('eth create key pair test', async () => {
+
+        test('async', async () => {
+
+            //Repo mock
+            const repoMock:Repo = mock(Repo);
+
+            const ethUtilsMock:EthUtils = mock(EthUtils);
+
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+
+            expect(panthalassa.ethCreateKeyPair('myPassword')).toBeInstanceOf(Promise);
+
+            verify(ethUtilsMock.createEthKeyPair('myPassword')).once();
+
+        });
+
+        test('sync', async () => {
+
+            //Repo mock
+            const repoMock:Repo = mock(Repo);
+
+            const ethUtilsMock:EthUtils = mock(EthUtils);
+
+            const data = {
+                address: 'address',
+                privKeyMnemonic: 'tree house bird'
+            };
+
+            when(ethUtilsMock.createEthKeyPair('myPassword'))
+                .thenReturn(new Promise((resolve, reject) => {
+
+                    setTimeout(() => {
+                        resolve(data)
+                    }, 500)
+
+                }));
+
+            //stub method
+            when(ethUtilsMock.hasPrivKey()).thenReturn(new Promise((resolve, reject) => resolve(true)));
+
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+
+            expect(await panthalassa.ethCreateKeyPair('myPassword')).toEqual(data);
+
+            verify(ethUtilsMock.createEthKeyPair('myPassword')).once();
+
+        });
+
+    });
+
 });
