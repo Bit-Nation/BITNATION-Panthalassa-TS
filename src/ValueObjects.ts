@@ -1,24 +1,6 @@
-export class EthAddress
-{
-    /**
-     * @param {string} address
-     */
-    constructor(private address: string)
-    {
-        if(address.length !== 42){
-            throw new Error('Expected EthAddress, got: '+address);
-        }
-    }
-
-    /**
-     *
-     * @returns {string}
-     */
-    public getAddress() : string
-    {
-        return this.address;
-    }
-}
+import {isValidAddress, } from 'ethereumjs-util'
+import {InvalidAddress, InvalidPrivateKey} from "./Errors";
+import {isValidPrivate} from 'ethereumjs-util'
 
 export class About
 {
@@ -27,10 +9,16 @@ export class About
      *
      * @param {string} pseudo
      * @param {string} image
-     * @param {EthAddress} ethAddress
+     * @param {string} ethAddress
      * @param {string} description
      */
-    constructor(private pseudo: string, private image: string, private ethAddress: EthAddress, private description: string){}
+    constructor(private pseudo: string, private image: string, private ethAddress: string, private description: string){
+
+        if(!isValidAddress(ethAddress)){
+            throw new InvalidAddress()
+        }
+
+    }
 
     /**
      *
@@ -52,9 +40,9 @@ export class About
 
     /**
      *
-     * @returns {EthAddress}
+     * @returns {string}
      */
-    public getEthAddress() : EthAddress
+    public getEthAddress() : string
     {
         return this.ethAddress;
     }
@@ -72,7 +60,7 @@ export class About
 
 export class IpfsAddedFileResponse
 {
-    constructor(private path: string,private hash: string,private size: number) {}
+    constructor(private path: string, private hash: string, private size: number) {}
 
     public getPath() : string
     {
@@ -88,4 +76,41 @@ export class IpfsAddedFileResponse
     {
         return this.size;
     }
+}
+
+/**
+ * Private Key Value Object
+ */
+export class PrivateKey
+{
+    /**
+     *
+     * @param {Buffer} privKey
+     */
+    public constructor(private privKey: Buffer) {
+
+        if(!isValidPrivate(privKey)){
+            throw new InvalidPrivateKey();
+        }
+
+    }
+
+    /**
+     * Returns the private key as a hex string
+     * @returns {string}
+     */
+    public getPrivKey() : string
+    {
+        return this.privKey.toString('hex');
+    }
+
+    /**
+     * Returns the private key as a buffer
+     * @returns {Buffer}
+     */
+    public getPrivKeyBuffer() : Buffer
+    {
+        return this.privKey;
+    }
+
 }

@@ -1,12 +1,13 @@
-import {EthKeyAlreadyExist, EthUtils, EthKeyDoesNotExist} from "../../src/EthWallet/EthUtils";
-import {SecureStorageInterface} from "../../src/SecureStorage/SecureStorageInterface";
-import {NodeJsSecureStorage} from '../../src/SecureStorage/NodeJsSecureStorage'
+import EthUtils from "../../src/EthWallet/EthUtils";
+import {SecureStorageInterface} from "BITNATION-Panthalassa-TS-secure-storage-interface/SecureStorageInterface";
 import {instance, mock, when} from "ts-mockito";
-import PrivateKey from "../../src/EthWallet/PrivateKey";
 import {AES, enc} from 'crypto-js'
-import {mnemonicToEntropy, entropyToMnemonic} from 'bip39'
+import {mnemonicToEntropy, entropyToMnemonic, validateMnemonic} from 'bip39'
 import {unlinkSync} from "fs";
-import {isValidPrivate} from "ethereumjs-util";
+import {isValidPrivate, isValidAddress} from "ethereumjs-util";
+import {EthKeyAlreadyExist, EthKeyDoesNotExist} from "../../src/Errors";
+import {NodeJsSecureStorage} from "BITNATION-Panthalassa-TS-node-js-secure-storage/NodeJsSecureStorage"
+import Utils from "../../src/Utils";
 
 const PRIVATE_TEST_KEY = "9b4b3da7d2d1c8749743a4ac17c151405f7900832bb4cf88735721cef4627096";
 
@@ -29,7 +30,7 @@ describe('EthUtils', () => {
             const ssMockInstance = new SecureStorageMock();
 
             //Eth utils
-            const eu:EthUtils = new EthUtils(ssMockInstance, PrivateKey);
+            const eu:EthUtils = new EthUtils(ssMockInstance, new Utils);
 
             //Should throw an error
             let error:any;
@@ -55,13 +56,10 @@ describe('EthUtils', () => {
             secureStorage.init();
 
             //Eth utils
-            const eu:EthUtils = new EthUtils(secureStorage, PrivateKey);
+            const eu:EthUtils = new EthUtils(secureStorage, new Utils);
 
             //Create keypair
             const keyPair = await eu.createEthKeyPair('my_secret_password');
-
-            //Ensure keypair exist
-            expect(await secureStorage.hasItem(EthUtils.PRIV_KEY_SS_NAME)).toBeTruthy();
 
             //Decrypt private key
             const decryptedPrivateKey = AES.decrypt(
@@ -76,7 +74,28 @@ describe('EthUtils', () => {
             expect(entropyToMnemonic(decryptedPrivateKey)).toEqual(keyPair.privKeyMnemonic);
 
             unlinkSync(storageName)
-        })
+        });
+
+        test('create valid key pair', async () => {
+
+            const secureStorageName = 'secure_storage'+Math.random();
+            const storagePassword = 'password';
+
+            //secure storage
+            let secureStorage:NodeJsSecureStorage = new NodeJsSecureStorage(secureStorageName, storagePassword);
+            secureStorage.init();
+
+            //Eth utils
+            const eu:EthUtils = new EthUtils(secureStorage, new Utils());
+
+            const keyPair:{address: string, privKeyMnemonic: string} = await eu.createEthKeyPair('pwd');
+
+            //expect(isValidPrivate(new Buffer(mnemonicToEntropy(keyPair.privKeyMnemonic), 'hex'))).toBeTruthy();
+            expect(isValidAddress(keyPair.address)).toBeTruthy();
+            expect(validateMnemonic(keyPair.privKeyMnemonic)).toBeTruthy();
+
+            unlinkSync(secureStorageName);
+        });
 
     });
 
@@ -91,7 +110,7 @@ describe('EthUtils', () => {
             when(secureStorageMock.hasItem(EthUtils.PRIV_KEY_SS_NAME)).thenReturn(new Promise(((resolve, reject) => resolve(true))));
 
             //Eth Utils
-            const eu:EthUtils = new EthUtils(instance(secureStorageMock), PrivateKey);
+            const eu:EthUtils = new EthUtils(instance(secureStorageMock), new Utils);
 
             //Should have an item
             expect(await eu.hasPrivKey()).toBeTruthy();
@@ -107,7 +126,7 @@ describe('EthUtils', () => {
             when(secureStorageMock.hasItem(EthUtils.PRIV_KEY_SS_NAME)).thenReturn(new Promise(((resolve, reject) => resolve(false))));
 
             //Eth Utils
-            const eu:EthUtils = new EthUtils(instance(secureStorageMock), PrivateKey);
+            const eu:EthUtils = new EthUtils(instance(secureStorageMock), new Utils);
 
             //Should not have an item
             expect(await eu.hasPrivKey()).toBeFalsy();
@@ -127,7 +146,7 @@ describe('EthUtils', () => {
             when(secureStorageMock.hasItem(EthUtils.PRIV_KEY_SS_NAME)).thenReturn(new Promise(((resolve, reject) => resolve(false))));
 
             //Eth Utils
-            const eu:EthUtils = new EthUtils(instance(secureStorageMock), PrivateKey);
+            const eu:EthUtils = new EthUtils(instance(secureStorageMock), new Utils);
 
             //Should throw an error
             let error:any;
@@ -167,7 +186,7 @@ describe('EthUtils', () => {
             when(secureStorageMock.getItem(EthUtils.PRIV_KEY_SS_NAME)).thenReturn(new Promise(((resolve, reject) => resolve(PRIVATE_KEY_ENCRYPTED))));
 
             //Eth Utils
-            const eu:EthUtils = new EthUtils(instance(secureStorageMock), PrivateKey);
+            const eu:EthUtils = new EthUtils(instance(secureStorageMock), new Utils);
 
             //Fetch private key
             const privKey:{privKey: string, privKeyMnemonic: string} = await eu.getPrivKey("my_secret_password");
@@ -180,6 +199,29 @@ describe('EthUtils', () => {
 
         })
 
-    })
+    });
+
+    describe('getAddress', () => {
+
+        test('fetch successfully', async () => {
+
+            const storageName = 'ss'+Math.random();
+
+            //secure storage
+            const ss:NodeJsSecureStorage = new NodeJsSecureStorage(storageName, 'password');
+            ss.init();
+
+            //Eth Utils
+            const ethUtils = new EthUtils(ss, new Utils);
+            await ethUtils.createEthKeyPair('passwd');
+
+            //get address and assert it
+            expect(isValidAddress(await ethUtils.getAddress('passwd'))).toBeTruthy();
+
+            unlinkSync(storageName);
+
+        })
+
+    });
 
 });

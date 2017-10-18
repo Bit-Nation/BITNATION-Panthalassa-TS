@@ -2,22 +2,25 @@
   "name": "panthalassa-ts",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/PanthalassaApi.js",
+  "types": "./dist/PanthalassaApi.d.ts",
   "dependencies": {
-    "bip39": "^2.4.0",
-    "ethereumjs-util": "^5.1.2",
     "@types/crypto-js": "^3.1.35",
     "@types/node": "^8.0.31",
+    "BITNATION-Panthalassa-TS-fs-interface": "git+https://github.com/Bit-Nation/BITNATION-Panthalassa-TS-fs-interface.git#ee0e5c9d0382cf3880b125d0427f005da8ae6fce",
+    "BITNATION-Panthalassa-TS-secure-storage-interface": "git+https://github.com/Bit-Nation/BITNATION-Panthalassa-TS-secure-storage-interface.git#f01f532b4e7794ed1f6b708ec9425c3976097f62",
+    "bip39": "^2.4.0",
     "crypto-js": "^3.1.9-1",
-    "fs-extra": "^4.0.2",
+    "ethereumjs-util": "^5.1.2",
     "ipfs": "^0.26.0",
-    "jest": "^21.2.1",
-    "react-native-sensitive-info": "^5.1.0",
     "typescript": "^2.5.2"
   },
   "devDependencies": {
     "@types/jest": "^21.1.1",
+    "BITNATION-Panthalassa-TS-node-js-fs": "git+https://github.com/Bit-Nation/BITNATION-Panthalassa-TS-node-js-fs.git",
+    "BITNATION-Panthalassa-TS-node-js-secure-storage": "git+https://github.com/Bit-Nation/BITNATION-Panthalassa-TS-node-js-secure-storage.git",
+    "fs-extra": "^4.0.2",
+    "jest": "^21.2.1",
     "nodemon": "^1.12.0",
     "ts-jest": "^21.0.1",
     "ts-mockito": "^2.2.0",
@@ -28,15 +31,7 @@
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "collectCoverage": true,
-    "mapCoverage": true,
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 90,
-        "lines": 90,
-        "statements": 90
-      }
-    }
+    "mapCoverage": true
   },
   "scripts": {
     "test": "npm run build:dev && jest --verbose",

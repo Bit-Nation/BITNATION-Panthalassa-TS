@@ -20,4 +20,26 @@ declare module 'ethereumjs-util' {
      * @returns {string}
      */
     export function isValidPublic(pubKey:Buffer) : boolean;
+
+    /**
+     *
+     * @param {Buffer} privKey
+     * @returns {Buffer}
+     */
+    export function privateToAddress(privKey:Buffer) : Buffer;
+
+    /**
+     *
+     * @param {Buffer} address
+     * @returns {Buffer}
+     */
+    export function isValidAddress(address:string) : boolean;
+
+    /**
+     *
+     * @param {string} value
+     * @returns {string}
+     */
+    export function addHexPrefix(value:string) : string;
+
 }
