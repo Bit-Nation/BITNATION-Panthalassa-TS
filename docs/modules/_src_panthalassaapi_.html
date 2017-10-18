@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;FileSystem/NodeJsFs&quot; | Panthalassa (Typescript implementation)</title>
+	<title>&quot;src/PanthalassaApi&quot; | Panthalassa (Typescript implementation)</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_filesystem_nodejsfs_.html">&quot;FileSystem/NodeJsFs&quot;</a>
+					<a href="_src_panthalassaapi_.html">&quot;src/PanthalassaApi&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;FileSystem/NodeJsFs&quot;</h1>
+			<h1>External module &quot;src/PanthalassaApi&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -73,59 +73,45 @@
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_filesystem_nodejsfs_.nodejsfs.html" class="tsd-kind-icon">Node<wbr>JsFs</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Variables</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_filesystem_nodejsfs_.html#ipfsnode" class="tsd-kind-icon">Ipfs<wbr>Node</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_src_panthalassaapi_.panthalassaapi.html" class="tsd-kind-icon">Panthalassa<wbr>Api</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_filesystem_nodejsfs_.html#create" class="tsd-kind-icon">create</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_src_panthalassaapi_.html#factory" class="tsd-kind-icon">factory</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-					<a name="ipfsnode" class="tsd-anchor"></a>
-					<h3>Ipfs<wbr>Node</h3>
-					<div class="tsd-signature tsd-kind-icon">Ipfs<wbr>Node<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;require(&#x27;ipfs&#x27;)</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/Bit-Nation/BITNATION-Panthalassa-TS/blob/b48e67f/src/FileSystem/NodeJsFs.ts#L7">FileSystem/NodeJsFs.ts:7</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="create" class="tsd-anchor"></a>
-					<h3>create</h3>
+					<a name="factory" class="tsd-anchor"></a>
+					<h3>factory</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">(</span>repoPath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_filesystem_nodejsfs_.nodejsfs.html" class="tsd-signature-type">NodeJsFs</a></li>
+						<li class="tsd-signature tsd-kind-icon">factory<span class="tsd-signature-symbol">(</span>fs<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_bitnation_panthalassa_ts_fs_interface_filesysteminterface_.filesysteminterface.html" class="tsd-signature-type">FileSystemInterface</a>, secStorage<span class="tsd-signature-symbol">: </span><a href="../interfaces/_node_modules_bitnation_panthalassa_ts_secure_storage_interface_securestorageinterface_.securestorageinterface.html" class="tsd-signature-type">SecureStorageInterface</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_src_panthalassaapi_.panthalassaapi.html" class="tsd-signature-type">PanthalassaApi</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Bit-Nation/BITNATION-Panthalassa-TS/blob/b48e67f/src/FileSystem/NodeJsFs.ts#L56">FileSystem/NodeJsFs.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/Bit-Nation/BITNATION-Panthalassa-TS/blob/c86133d/src/PanthalassaApi.ts#L79">src/PanthalassaApi.ts:79</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>repoPath: <span class="tsd-signature-type">string</span></h5>
+									<h5>fs: <a href="../interfaces/_node_modules_bitnation_panthalassa_ts_fs_interface_filesysteminterface_.filesysteminterface.html" class="tsd-signature-type">FileSystemInterface</a></h5>
+								</li>
+								<li>
+									<h5>secStorage: <a href="../interfaces/_node_modules_bitnation_panthalassa_ts_secure_storage_interface_securestorageinterface_.securestorageinterface.html" class="tsd-signature-type">SecureStorageInterface</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../classes/_filesystem_nodejsfs_.nodejsfs.html" class="tsd-signature-type">NodeJsFs</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/_src_panthalassaapi_.panthalassaapi.html" class="tsd-signature-type">PanthalassaApi</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -137,51 +123,48 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_ethwallet_ethutils_.html">"<wbr>Eth<wbr>Wallet/<wbr>Eth<wbr>Utils"</a>
+					<li class="label tsd-is-external">
+						<span>Internals</span>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ethwallet_privatekey_.html">"<wbr>Eth<wbr>Wallet/<wbr>Private<wbr>Key"</a>
+						<a href="_src_errors_.html">"src/<wbr>Errors"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_filesystem_filesysteminterface_.html">"<wbr>File<wbr>System/<wbr>File<wbr>System<wbr>Interface"</a>
+						<a href="_src_ethwallet_ethutils_.html">"src/<wbr>Eth<wbr>Wallet/<wbr>Eth<wbr>Utils"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_src_ipfs_.html">"src/<wbr>Ipfs"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_filesystem_nodejsfs_.html">"<wbr>File<wbr>System/<wbr>Node<wbr>JsFs"</a>
+						<a href="_src_panthalassaapi_.html">"src/<wbr>Panthalassa<wbr>Api"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_ipfs_.html">"<wbr>Ipfs"</a>
+						<a href="_src_repo_.html">"src/<wbr>Repo"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_repo_.html">"<wbr>Repo"</a>
+						<a href="_src_utils_.html">"src/<wbr>Utils"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_securestorage_nodejssecurestorage_.html">"<wbr>Secure<wbr>Storage/<wbr>Node<wbr>JsSecure<wbr>Storage"</a>
+						<a href="_src_valueobjects_.html">"src/<wbr>Value<wbr>Objects"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_securestorage_reactnativesecurestorage_.html">"<wbr>Secure<wbr>Storage/<wbr>React<wbr>Native<wbr>Secure<wbr>Storage"</a>
+					<li class="label tsd-is-external">
+						<span>Externals</span>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_securestorage_securestorageinterface_.html">"<wbr>Secure<wbr>Storage/<wbr>Secure<wbr>Storage<wbr>Interface"</a>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="_node_modules_bitnation_panthalassa_ts_fs_interface_filesysteminterface_.html">"node_<wbr>modules/BITNATION-<wbr><wbr>Panthalassa-<wbr>TS-<wbr>fs-<wbr>interface/<wbr>File<wbr>System<wbr>Interface"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_valueobjects_.html">"<wbr>Value<wbr>Objects"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_index_.html">"index"</a>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="_node_modules_bitnation_panthalassa_ts_secure_storage_interface_securestorageinterface_.html">"node_<wbr>modules/BITNATION-<wbr><wbr>Panthalassa-<wbr>TS-<wbr>secure-<wbr>storage-<wbr>interface/<wbr>Secure<wbr>Storage<wbr>Interface"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/_filesystem_nodejsfs_.nodejsfs.html" class="tsd-kind-icon">Node<wbr>JsFs</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_filesystem_nodejsfs_.html#ipfsnode" class="tsd-kind-icon">Ipfs<wbr>Node</a>
+						<a href="../classes/_src_panthalassaapi_.panthalassaapi.html" class="tsd-kind-icon">Panthalassa<wbr>Api</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_filesystem_nodejsfs_.html#create" class="tsd-kind-icon">create</a>
+						<a href="_src_panthalassaapi_.html#factory" class="tsd-kind-icon">factory</a>
 					</li>
 				</ul>
 			</nav>

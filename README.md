@@ -1,6 +1,6 @@
 [![Build Status](https://semaphoreci.com/api/v1/florianlenz/bitnation-panthalassa-ts/branches/develop/badge.svg)](https://semaphoreci.com/florianlenz/bitnation-panthalassa-ts)
 
-[Docs](http://ipfs.io/ipfs/QmdMtKDBcXEMGisBZhUNys8ji5vevaEp76ovCyBTzvcEFM)
+[Docs](http://ipfs.io/ipfs/QmT7ddf1fXwksXqEug44nJFLWdPA6odo7qDv88qfXR8ZBh)
 
 # BITNATION-Panthalassa-TS
 This is a TypeScript(TS) implementation of [panthalassa](https://docs.google.com/document/d/1qdniz9XerITfhinkZev98w2vnSKkP4p5iwqYk4ajK-Y/edit?ts=5968c50e#heading=h.5x0d5h95i329). TS is a compiled programming laguage. In the case of typescript it get's compiled to normal JavaScript(JS). The compiled JS can found in the dist folder.

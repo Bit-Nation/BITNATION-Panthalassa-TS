@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EthKeyAlreadyExist | Panthalassa (Typescript implementation)</title>
+	<title>IpfsAddedFileResponse | Panthalassa (Typescript implementation)</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_ethwallet_ethutils_.html">&quot;EthWallet/EthUtils&quot;</a>
+					<a href="../modules/_src_valueobjects_.html">&quot;src/ValueObjects&quot;</a>
 				</li>
 				<li>
-					<a href="_ethwallet_ethutils_.ethkeyalreadyexist.html">EthKeyAlreadyExist</a>
+					<a href="_src_valueobjects_.ipfsaddedfileresponse.html">IpfsAddedFileResponse</a>
 				</li>
 			</ul>
-			<h1>Class EthKeyAlreadyExist</h1>
+			<h1>Class IpfsAddedFileResponse</h1>
 		</div>
 	</div>
 </header>
@@ -73,12 +73,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">Error</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">EthKeyAlreadyExist</span>
-							</li>
-						</ul>
+						<span class="target">IpfsAddedFileResponse</span>
 					</li>
 				</ul>
 			</section>
@@ -87,62 +82,106 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="_ethwallet_ethutils_.ethkeyalreadyexist.html#error" class="tsd-kind-icon">Error</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_ethwallet_ethutils_.ethkeyalreadyexist.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_ethwallet_ethutils_.ethkeyalreadyexist.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static"><a href="_ethwallet_ethutils_.ethkeyalreadyexist.html#stack" class="tsd-kind-icon">stack</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_src_valueobjects_.ipfsaddedfileresponse.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_valueobjects_.ipfsaddedfileresponse.html#gethash" class="tsd-kind-icon">get<wbr>Hash</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_valueobjects_.ipfsaddedfileresponse.html#getpath" class="tsd-kind-icon">get<wbr>Path</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_valueobjects_.ipfsaddedfileresponse.html#getsize" class="tsd-kind-icon">get<wbr>Size</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="error" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Error</h3>
-					<div class="tsd-signature tsd-kind-icon">Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ErrorConstructor</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in /Users/florian/project/BITNATION-Panthalassa-TS/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:884</li>
-						</ul>
-					</aside>
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Ipfs<wbr>Added<wbr>File<wbr>Response<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, hash<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, size<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_valueobjects_.ipfsaddedfileresponse.html" class="tsd-signature-type">IpfsAddedFileResponse</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bit-Nation/BITNATION-Panthalassa-TS/blob/c86133d/src/ValueObjects.ts#L62">src/ValueObjects.ts:62</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>hash: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>size: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_src_valueobjects_.ipfsaddedfileresponse.html" class="tsd-signature-type">IpfsAddedFileResponse</a></h4>
+						</li>
+					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-					<a name="message" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> message</h3>
-					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from Error.message</p>
-						<ul>
-							<li>Defined in /Users/florian/project/BITNATION-Panthalassa-TS/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:874</li>
-						</ul>
-					</aside>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="gethash" class="tsd-anchor"></a>
+					<h3>get<wbr>Hash</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Hash<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bit-Nation/BITNATION-Panthalassa-TS/blob/c86133d/src/ValueObjects.ts#L70">src/ValueObjects.ts:70</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-					<a name="name" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from Error.name</p>
-						<ul>
-							<li>Defined in /Users/florian/project/BITNATION-Panthalassa-TS/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:873</li>
-						</ul>
-					</aside>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getpath" class="tsd-anchor"></a>
+					<h3>get<wbr>Path</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Path<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bit-Nation/BITNATION-Panthalassa-TS/blob/c86133d/src/ValueObjects.ts#L65">src/ValueObjects.ts:65</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
-					<a name="stack" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> stack</h3>
-					<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from Error.stack</p>
-						<p>Overrides Error.stack</p>
-						<ul>
-							<li>Defined in /Users/florian/project/BITNATION-Panthalassa-TS/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:875</li>
-						</ul>
-					</aside>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getsize" class="tsd-anchor"></a>
+					<h3>get<wbr>Size</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Size<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Bit-Nation/BITNATION-Panthalassa-TS/blob/c86133d/src/ValueObjects.ts#L75">src/ValueObjects.ts:75</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -152,75 +191,69 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class="label tsd-is-external">
+						<span>Internals</span>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_errors_.html">"src/<wbr>Errors"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_ethwallet_ethutils_.html">"src/<wbr>Eth<wbr>Wallet/<wbr>Eth<wbr>Utils"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_ipfs_.html">"src/<wbr>Ipfs"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_panthalassaapi_.html">"src/<wbr>Panthalassa<wbr>Api"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_repo_.html">"src/<wbr>Repo"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_src_utils_.html">"src/<wbr>Utils"</a>
+					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_ethwallet_ethutils_.html">"<wbr>Eth<wbr>Wallet/<wbr>Eth<wbr>Utils"</a>
+						<a href="../modules/_src_valueobjects_.html">"src/<wbr>Value<wbr>Objects"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_ethwallet_privatekey_.html">"<wbr>Eth<wbr>Wallet/<wbr>Private<wbr>Key"</a>
+					<li class="label tsd-is-external">
+						<span>Externals</span>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_filesystem_filesysteminterface_.html">"<wbr>File<wbr>System/<wbr>File<wbr>System<wbr>Interface"</a>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_node_modules_bitnation_panthalassa_ts_fs_interface_filesysteminterface_.html">"node_<wbr>modules/BITNATION-<wbr><wbr>Panthalassa-<wbr>TS-<wbr>fs-<wbr>interface/<wbr>File<wbr>System<wbr>Interface"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_filesystem_nodejsfs_.html">"<wbr>File<wbr>System/<wbr>Node<wbr>JsFs"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_ipfs_.html">"<wbr>Ipfs"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_repo_.html">"<wbr>Repo"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_securestorage_nodejssecurestorage_.html">"<wbr>Secure<wbr>Storage/<wbr>Node<wbr>JsSecure<wbr>Storage"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_securestorage_reactnativesecurestorage_.html">"<wbr>Secure<wbr>Storage/<wbr>React<wbr>Native<wbr>Secure<wbr>Storage"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_securestorage_securestorageinterface_.html">"<wbr>Secure<wbr>Storage/<wbr>Secure<wbr>Storage<wbr>Interface"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_valueobjects_.html">"<wbr>Value<wbr>Objects"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="../modules/_node_modules_bitnation_panthalassa_ts_secure_storage_interface_securestorageinterface_.html">"node_<wbr>modules/BITNATION-<wbr><wbr>Panthalassa-<wbr>TS-<wbr>secure-<wbr>storage-<wbr>interface/<wbr>Secure<wbr>Storage<wbr>Interface"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_src_valueobjects_.about.html" class="tsd-kind-icon">About</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_ethwallet_ethutils_.ethkeyalreadyexist.html" class="tsd-kind-icon">Eth<wbr>Key<wbr>Already<wbr>Exist</a>
+						<a href="_src_valueobjects_.ipfsaddedfileresponse.html" class="tsd-kind-icon">Ipfs<wbr>Added<wbr>File<wbr>Response</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="_ethwallet_ethutils_.ethkeyalreadyexist.html#error" class="tsd-kind-icon">Error</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="_src_valueobjects_.ipfsaddedfileresponse.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="_ethwallet_ethutils_.ethkeyalreadyexist.html#message" class="tsd-kind-icon">message</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_valueobjects_.ipfsaddedfileresponse.html#gethash" class="tsd-kind-icon">get<wbr>Hash</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-								<a href="_ethwallet_ethutils_.ethkeyalreadyexist.html#name" class="tsd-kind-icon">name</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_valueobjects_.ipfsaddedfileresponse.html#getpath" class="tsd-kind-icon">get<wbr>Path</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
-								<a href="_ethwallet_ethutils_.ethkeyalreadyexist.html#stack" class="tsd-kind-icon">stack</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_valueobjects_.ipfsaddedfileresponse.html#getsize" class="tsd-kind-icon">get<wbr>Size</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_ethwallet_ethutils_.ethkeydoesnotexist.html" class="tsd-kind-icon">Eth<wbr>Key<wbr>Does<wbr>Not<wbr>Exist</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_ethwallet_ethutils_.ethutils.html" class="tsd-kind-icon">Eth<wbr>Utils</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_ethwallet_ethutils_.invalidprivatekey.html" class="tsd-kind-icon">Invalid<wbr>Private<wbr>Key</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_ethwallet_ethutils_.invalidpublickey.html" class="tsd-kind-icon">Invalid<wbr>Public<wbr>Key</a>
+						<a href="_src_valueobjects_.privatekey.html" class="tsd-kind-icon">Private<wbr>Key</a>
 					</li>
 				</ul>
 			</nav>
