@@ -1,4 +1,4 @@
-import {About, PrivateKey} from "../src/ValueObjects";
+import {About, PrivateKey, IpfsAddedFileResponse} from "../src/ValueObjects";
 
 describe('test value objects', () => {
 
@@ -29,5 +29,15 @@ describe('test value objects', () => {
         expect(privateKey.getPrivKey()).toBe("c8ef22dbc9ab6c668840850aa6b7ec7868edf24597da37e5aaa65b772fbc78cb");
 
     });
+
+    test('IpfsAddedFileResponse test', () => {
+
+        const r = new IpfsAddedFileResponse('/example/path', '0x000b75fcdc15d41277deb033c72d2c8d774ccced', 3432);
+
+        expect(r.getHash()).toBe("0x000b75fcdc15d41277deb033c72d2c8d774ccced");
+        expect(r.getPath()).toBe('/example/path');
+        expect(r.getSize()).toBe(3432);
+
+    })
 
 });

@@ -60,7 +60,7 @@ export class About
 
 export class IpfsAddedFileResponse
 {
-    constructor(private path: string,private hash: string,private size: number) {}
+    constructor(private path: string, private hash: string, private size: number) {}
 
     public getPath() : string
     {
