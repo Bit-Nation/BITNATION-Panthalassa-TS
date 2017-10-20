@@ -78,4 +78,40 @@ describe('test repo', () => {
 
     });
 
+    describe('hasAbout', () => {
+
+        test('yes', async () => {
+
+            //fs
+            let fs:nodeFs.NodeJsFs = nodeFs.factory('./');
+
+            //eth utils mock
+            let ethUtils:EthUtils = mock(EthUtils);
+
+            let r:Repo = new Repo(fs, instance(ethUtils));
+
+            await fs.writeFile('about.json', '{}');
+
+            expect(await r.hasAbout()).toBeTruthy();
+
+            await fs.deleteFile('about.json');
+
+        });
+
+        test('nope', async () => {
+
+            //fs
+            let fs:nodeFs.NodeJsFs = nodeFs.factory('./');
+
+            //eth utils mock
+            let ethUtils:EthUtils = mock(EthUtils);
+
+            let r:Repo = new Repo(fs, instance(ethUtils));
+
+            expect(await r.hasAbout()).toBeFalsy();
+
+        })
+
+    });
+
 });

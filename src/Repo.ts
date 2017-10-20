@@ -13,6 +13,8 @@ export default class Repo
      */
     constructor(private fs: FileSystemInterface, private ethUtils:EthUtils) {}
 
+    readonly ABOUT_FILE_NAME = 'about.json';
+
     /**
      *
      * @param {About} about
@@ -32,7 +34,7 @@ export default class Repo
                     }
 
                     // Write about information
-                    this.fs.writeFile('about.json', JSON.stringify(about))
+                    this.fs.writeFile(this.ABOUT_FILE_NAME, JSON.stringify(about))
                         .then(result => resolve(result))
                         .catch(error => reject(error));
 
@@ -41,6 +43,15 @@ export default class Repo
 
         });
 
+    }
+
+    /**
+     *
+     * @returns {Promise<boolean>}
+     */
+    hasAbout() : Promise<boolean>
+    {
+        return this.fs.fileExist(this.ABOUT_FILE_NAME);
     }
 
 }
