@@ -227,6 +227,48 @@ describe('panthalassa api', () => {
         
         expect(factory(fs, secStore)).toBeInstanceOf(PanthalassaApi);
 
-    })
+    });
+
+    describe('repoHasAbout', async () => {
+
+        test('async', async () => {
+
+            //Repo mock
+            const repoMock:Repo = mock(Repo);
+
+            when(repoMock.hasAbout()).thenReturn(new Promise((resolve, reject) => {
+                resolve();
+            }));
+
+            const ethUtilsMock:EthUtils = mock(EthUtils);
+
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+
+            expect(panthalassa.repoHasAbout()).toBeInstanceOf(Promise);
+
+            verify(repoMock.hasAbout()).once();
+
+        });
+
+        test('sync', async () => {
+
+            //Repo mock
+            const repoMock:Repo = mock(Repo);
+
+            when(repoMock.hasAbout()).thenReturn(new Promise((resolve, reject) => {
+                resolve(false);
+            }));
+
+            const ethUtilsMock:EthUtils = mock(EthUtils);
+
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+
+            expect(await panthalassa.repoHasAbout()).toBeFalsy();
+
+            verify(repoMock.hasAbout()).once();
+
+        });
+
+    });
 
 });

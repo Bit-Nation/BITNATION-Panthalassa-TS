@@ -58,6 +58,10 @@ export class PanthalassaApi
 
     }
 
+    //
+    // REPO RELATED
+    //
+
     /**
      *
      * @param {About} about
@@ -66,6 +70,15 @@ export class PanthalassaApi
     public async repoSetAbout(about:About) : Promise<void>
     {
         return this.repo.setAbout(about);
+    }
+
+    /**
+     *
+     * @returns {Promise<boolean>}
+     */
+    public repoHasAbout() : Promise<boolean>
+    {
+        return this.repo.hasAbout();
     }
 
 }
