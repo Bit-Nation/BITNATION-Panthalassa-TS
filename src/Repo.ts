@@ -16,16 +16,31 @@ export default class Repo
     /**
      *
      * @param {About} about
-     * @returns {Promise<string>}
+     * @returns {Promise<void>}
      */
-    async setAbout(about: About) : Promise<{}>
+    setAbout(about: About) : Promise<void>
     {
-        //Exit if no eth key is present
-        if(! await this.ethUtils.hasPrivKey()){
-            throw new EthKeyDoesNotExist("Please create an eth key first");
-        }
+        return new Promise( (resolve, reject)  => {
 
-        return this.fs.writeFile('about.json', JSON.stringify(about));
+            this.ethUtils.hasPrivKey()
+                .then(hasPrivKey => {
+
+                    // Reject and exist if there is no private key
+                    if(false === hasPrivKey){
+                        reject(new EthKeyDoesNotExist("Please create an eth key first"));
+                        return;
+                    }
+
+                    // Write about information
+                    this.fs.writeFile('about.json', JSON.stringify(about))
+                        .then(result => resolve(result))
+                        .catch(error => reject(error));
+
+                })
+                .catch(error => reject(error));
+
+        });
+
     }
 
 }

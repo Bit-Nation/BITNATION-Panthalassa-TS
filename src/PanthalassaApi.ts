@@ -61,9 +61,9 @@ export class PanthalassaApi
     /**
      *
      * @param {About} about
-     * @returns {Promise<{}>}
+     * @returns {Promise<void>}
      */
-    public async repoSetAbout(about:About) : Promise<{}>
+    public async repoSetAbout(about:About) : Promise<void>
     {
         return this.repo.setAbout(about);
     }
