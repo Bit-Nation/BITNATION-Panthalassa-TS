@@ -9,7 +9,7 @@ export class About implements ObjectSchema {
 
     public properties:PropertiesTypes = {
         pseudo : 'string',
-        image: 'data',
+        image: 'string',
         description: 'string'
     }
 
