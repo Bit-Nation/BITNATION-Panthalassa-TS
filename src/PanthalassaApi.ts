@@ -73,7 +73,7 @@ export class PanthalassaApi
      * @param {string} descr
      * @returns {Promise<any>}
      */
-    public repoSetAbout(pseudo:string, image:string, descr:string) : Promise<any>
+    public setAbout(pseudo:string, image:string, descr:string) : Promise<any>
     {
         return new Promise((resolve, reject) => {
 
