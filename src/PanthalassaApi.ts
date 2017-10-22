@@ -13,6 +13,12 @@ export class PanthalassaApi
 {
 
     /**
+     * Since there is currently only one profile allowed, the id will stay the same
+     * @type {number}
+     */
+    private readonly ABOUT_ID = 1;
+
+    /**
      *
      * @param {Repo} repo
      * @param {EthUtils} ethUtils
@@ -77,16 +83,20 @@ export class PanthalassaApi
     {
         return new Promise((resolve, reject) => {
 
+            //Since there is currently only one profile allowed
+            //there is a static primary key used
             this.db
                 .write('About', {
+                    'id' : this.ABOUT_ID,
                     'pseudo' : pseudo,
                     'image' : image,
                     'description' : descr
-                })
+                }, true)
                 .then(about => {
                     resolve(about);
                 })
                 .catch(error => reject(error));
+
         })
     }
 
