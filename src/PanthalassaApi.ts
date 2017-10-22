@@ -4,6 +4,7 @@ import EthUtils from "./EthWallet/EthUtils";
 import Utils from "./Utils";
 import {SecureStorageInterface} from "BITNATION-Panthalassa-TS-secure-storage-interface/SecureStorageInterface";
 import {About} from "./ValueObjects";
+import {} from 'realm';
 
 export class PanthalassaApi
 {
@@ -12,8 +13,9 @@ export class PanthalassaApi
      *
      * @param {Repo} repo
      * @param {EthUtils} ethUtils
+     * @param {Realm} db
      */
-    constructor(private repo: Repo, private ethUtils:EthUtils) { }
+    constructor(private repo: Repo, private ethUtils:EthUtils, private db:Realm) { }
 
     /**
      *
@@ -84,7 +86,8 @@ export function factory(fs:FileSystemInterface, secStorage:SecureStorageInterfac
 
     return new PanthalassaApi(
         new Repo(fs, ethUtils),
-        ethUtils
+        ethUtils,
+        new Realm()
     );
 
 }
