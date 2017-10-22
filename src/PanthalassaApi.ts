@@ -67,13 +67,27 @@ export class PanthalassaApi
     }
 
     /**
-     *
-     * @param {About} about
-     * @returns {Promise<void>}
+     * 
+     * @param {string} pseudo
+     * @param {string} image
+     * @param {string} descr
+     * @returns {Promise<any>}
      */
-    public async repoSetAbout(about:About) : Promise<void>
+    public repoSetAbout(pseudo:string, image:string, descr:string) : Promise<any>
     {
-        return this.repo.setAbout(about);
+        return new Promise((resolve, reject) => {
+
+            this.db
+                .write('About', {
+                    'pseudo' : pseudo,
+                    'image' : image,
+                    'description' : descr
+                })
+                .then(about => {
+                    resolve(about);
+                })
+                .catch(error => reject(error));
+        })
     }
 
     /**
