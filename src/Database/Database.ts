@@ -23,11 +23,10 @@ export default class Database {
      */
     public write<T>(type: string | Realm.ObjectClass | Function, properties: T & Realm.ObjectPropsType, update?: boolean) : Promise<T> {
         return new Promise((resolve, reject) => {
-            console.log(this.realm);
             this.realm
                 .then((r:Realm) => {
                     r.write(() => {
-                        resolve(r.create(type, properties));
+                        resolve(r.create(type, properties, update));
                     })
                 })
                 .catch(err => { reject(err) })
