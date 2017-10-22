@@ -7,6 +7,7 @@ import {NodeJsSecureStorage} from 'BITNATION-Panthalassa-TS-node-js-secure-stora
 import {NodeJsFs} from 'BITNATION-Panthalassa-TS-node-js-fs'
 import DataBase from '../src/Database/Database'
 import {BaseConfig} from '../src/Database/Config'
+import {EventEmitter, ListenerFn} from "eventemitter3";
 
 function createDb() : DataBase {
     return new DataBase(new BaseConfig());
@@ -40,7 +41,7 @@ describe('panthalassa api', () => {
                 ))
             );
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), new EventEmitter(), new EventEmitter(), db);
 
             expect(panthalassa.repoSetAbout(about)).toBeInstanceOf(Promise);
 
@@ -65,7 +66,7 @@ describe('panthalassa api', () => {
              */
             const db = createDb();
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), new EventEmitter(), new EventEmitter(), db);
 
             expect(await panthalassa.repoSetAbout(about)).toBeUndefined();
 
@@ -90,7 +91,7 @@ describe('panthalassa api', () => {
              */
             const db = createDb();
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), new EventEmitter(), new EventEmitter(), db);
 
             expect(panthalassa.ethGetPrivateKey('password')).toBeInstanceOf(Promise);
 
@@ -114,7 +115,7 @@ describe('panthalassa api', () => {
              */
             const db = createDb();
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), new EventEmitter(), new EventEmitter(), db);
 
             expect(JSON.stringify(await panthalassa.ethGetPrivateKey('password')))
                 .toBe(JSON.stringify(privKeyResponse));
@@ -140,7 +141,7 @@ describe('panthalassa api', () => {
              */
             const db = createDb();
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), new EventEmitter(), new EventEmitter(), db);
 
             expect(panthalassa.ethGetAddress('password')).toBeInstanceOf(Promise);
 
@@ -164,7 +165,7 @@ describe('panthalassa api', () => {
             //stub method
             when(ethUtilsMock.getAddress('password')).thenReturn(new Promise((resolve, reject) => resolve("i_am_a_address")));
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), new EventEmitter(), new EventEmitter(), db);
 
             expect(await panthalassa.ethGetAddress('password')).toBe("i_am_a_address");
 
@@ -189,7 +190,7 @@ describe('panthalassa api', () => {
              */
             const db = createDb();
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), new EventEmitter(), new EventEmitter(), db);
 
             expect(panthalassa.ethHasPrivKey()).toBeInstanceOf(Promise);
 
@@ -213,7 +214,7 @@ describe('panthalassa api', () => {
             //stub method
             when(ethUtilsMock.hasPrivKey()).thenReturn(new Promise((resolve, reject) => resolve(true)));
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), new EventEmitter(), new EventEmitter(), db);
 
             expect(await panthalassa.ethHasPrivKey()).toBeTruthy();
 
@@ -238,7 +239,7 @@ describe('panthalassa api', () => {
              */
             const db = createDb();
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), new EventEmitter(), new EventEmitter(), db);
 
             expect(panthalassa.ethCreateKeyPair('myPassword')).toBeInstanceOf(Promise);
 
@@ -276,7 +277,7 @@ describe('panthalassa api', () => {
             //stub method
             when(ethUtilsMock.hasPrivKey()).thenReturn(new Promise((resolve, reject) => resolve(true)));
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), new EventEmitter(), new EventEmitter(), db);
 
             expect(await panthalassa.ethCreateKeyPair('myPassword')).toEqual(data);
 

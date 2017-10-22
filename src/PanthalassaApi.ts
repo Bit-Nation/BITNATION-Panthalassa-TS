@@ -22,6 +22,7 @@ export class PanthalassaApi
      */
     constructor(private repo: Repo, private ethUtils:EthUtils, private intEventEmitter:EventEmitter, private pubEventEmitter:EventEmitter, private db:DataBase) { }
 
+
     /**
      *
      * @param {string} password
