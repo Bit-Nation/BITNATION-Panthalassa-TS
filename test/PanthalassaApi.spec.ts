@@ -5,6 +5,12 @@ import {PanthalassaApi, factory} from "../src/PanthalassaApi";
 import EthUtils from "../src/EthWallet/EthUtils";
 import {NodeJsSecureStorage} from 'BITNATION-Panthalassa-TS-node-js-secure-storage';
 import {NodeJsFs} from 'BITNATION-Panthalassa-TS-node-js-fs'
+import DataBase from '../src/Database/Database'
+import {BaseConfig} from '../src/Database/Config'
+
+function createDb() : DataBase {
+    return new DataBase(new BaseConfig());
+}
 
 describe('panthalassa api', () => {
 
@@ -20,6 +26,12 @@ describe('panthalassa api', () => {
 
             const ethUtilsMock:EthUtils = mock(EthUtils);
 
+            /**
+             * Database
+             * @type {Database}
+             */
+            const db = createDb();
+
             //stub method
             when(repoMock.setAbout(instance(about))).thenReturn(
                 new Promise((resolve, reject) => setTimeout(
@@ -27,8 +39,8 @@ describe('panthalassa api', () => {
                     10000
                 ))
             );
-            
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
 
             expect(panthalassa.repoSetAbout(about)).toBeInstanceOf(Promise);
 
@@ -47,7 +59,13 @@ describe('panthalassa api', () => {
 
             const ethUtilsMock:EthUtils = mock(EthUtils);
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+            /**
+             * Database
+             * @type {Database}
+             */
+            const db = createDb();
+
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
 
             expect(await panthalassa.repoSetAbout(about)).toBeUndefined();
 
@@ -66,7 +84,13 @@ describe('panthalassa api', () => {
 
             const ethUtilsMock:EthUtils = mock(EthUtils);
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+            /**
+             * Database
+             * @type {Database}
+             */
+            const db = createDb();
+
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
 
             expect(panthalassa.ethGetPrivateKey('password')).toBeInstanceOf(Promise);
 
@@ -84,7 +108,14 @@ describe('panthalassa api', () => {
             const ethUtilsMock:EthUtils = mock(EthUtils);
             when(ethUtilsMock.getPrivKey('password')).thenReturn(new Promise((resolve, reject) => resolve(privKeyResponse)));
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+            /**
+             * Database
+             * @type {Database}
+             */
+            const db = createDb();
+
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
+
             expect(JSON.stringify(await panthalassa.ethGetPrivateKey('password')))
                 .toBe(JSON.stringify(privKeyResponse));
 
@@ -103,7 +134,13 @@ describe('panthalassa api', () => {
 
             const ethUtilsMock:EthUtils = mock(EthUtils);
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+            /**
+             * Database
+             * @type {Database}
+             */
+            const db = createDb();
+
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
 
             expect(panthalassa.ethGetAddress('password')).toBeInstanceOf(Promise);
 
@@ -118,10 +155,16 @@ describe('panthalassa api', () => {
 
             const ethUtilsMock:EthUtils = mock(EthUtils);
 
+            /**
+             * Database
+             * @type {Database}
+             */
+            const db = createDb();
+
             //stub method
             when(ethUtilsMock.getAddress('password')).thenReturn(new Promise((resolve, reject) => resolve("i_am_a_address")));
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
 
             expect(await panthalassa.ethGetAddress('password')).toBe("i_am_a_address");
 
@@ -140,7 +183,13 @@ describe('panthalassa api', () => {
 
             const ethUtilsMock:EthUtils = mock(EthUtils);
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+            /**
+             * Database
+             * @type {Database}
+             */
+            const db = createDb();
+
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
 
             expect(panthalassa.ethHasPrivKey()).toBeInstanceOf(Promise);
 
@@ -155,10 +204,16 @@ describe('panthalassa api', () => {
 
             const ethUtilsMock:EthUtils = mock(EthUtils);
 
+            /**
+             * Database
+             * @type {Database}
+             */
+            const db = createDb();
+
             //stub method
             when(ethUtilsMock.hasPrivKey()).thenReturn(new Promise((resolve, reject) => resolve(true)));
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
 
             expect(await panthalassa.ethHasPrivKey()).toBeTruthy();
 
@@ -177,7 +232,13 @@ describe('panthalassa api', () => {
 
             const ethUtilsMock:EthUtils = mock(EthUtils);
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+            /**
+             * Database
+             * @type {Database}
+             */
+            const db = createDb();
+
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
 
             expect(panthalassa.ethCreateKeyPair('myPassword')).toBeInstanceOf(Promise);
 
@@ -191,6 +252,12 @@ describe('panthalassa api', () => {
             const repoMock:Repo = mock(Repo);
 
             const ethUtilsMock:EthUtils = mock(EthUtils);
+
+            /**
+             * Database
+             * @type {Database}
+             */
+            const db = createDb();
 
             const data = {
                 address: 'address',
@@ -209,7 +276,7 @@ describe('panthalassa api', () => {
             //stub method
             when(ethUtilsMock.hasPrivKey()).thenReturn(new Promise((resolve, reject) => resolve(true)));
 
-            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock));
+            const panthalassa = new PanthalassaApi(instance(repoMock), instance(ethUtilsMock), db);
 
             expect(await panthalassa.ethCreateKeyPair('myPassword')).toEqual(data);
 
@@ -224,7 +291,7 @@ describe('panthalassa api', () => {
         const fs = new NodeJsSecureStorage();
 
         const secStore = new NodeJsFs();
-        
+
         expect(factory(fs, secStore)).toBeInstanceOf(PanthalassaApi);
 
     })
