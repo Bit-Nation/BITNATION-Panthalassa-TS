@@ -6,6 +6,8 @@ import {SecureStorageInterface} from "BITNATION-Panthalassa-TS-secure-storage-in
 import {About} from "./ValueObjects";
 import DataBase from './Database/Database'
 import {BaseConfig} from './Database/Config'
+import {EventEmitter, ListenerFn} from "eventemitter3";
+import {PANTHALASSA_START, PANTHALASSA_STOP} from "./Eventemitter/Events"
 
 export class PanthalassaApi
 {
@@ -14,9 +16,11 @@ export class PanthalassaApi
      *
      * @param {Repo} repo
      * @param {EthUtils} ethUtils
+     * @param {EventEmitter} intEventEmitter
+     * @param {EventEmitter} pubEventEmitter
      * @param {Database} db
      */
-    constructor(private repo: Repo, private ethUtils:EthUtils, private db:DataBase) { }
+    constructor(private repo: Repo, private ethUtils:EthUtils, private intEventEmitter:EventEmitter, private pubEventEmitter:EventEmitter, private db:DataBase) { }
 
     /**
      *
@@ -71,6 +75,24 @@ export class PanthalassaApi
         return this.repo.setAbout(about);
     }
 
+    /**
+     * Register listener
+     * @param {string} event
+     * @param {ListenerFn} fn
+     * @param context
+     */
+    on(event:string, fn: ListenerFn, context?: any){
+
+        this.pubEventEmitter.on(event, fn, context)
+
+    }
+
+    public start(){
+
+        this.intEventEmitter.emit(PANTHALASSA_START)
+
+    }
+
 }
 
 /**
@@ -88,6 +110,8 @@ export function factory(fs:FileSystemInterface, secStorage:SecureStorageInterfac
     return new PanthalassaApi(
         new Repo(fs, ethUtils),
         ethUtils,
+        new EventEmitter(),
+        new EventEmitter(),
         new DataBase(new BaseConfig())
     );
 
