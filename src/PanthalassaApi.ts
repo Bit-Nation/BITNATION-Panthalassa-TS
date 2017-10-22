@@ -67,7 +67,7 @@ export class PanthalassaApi
     }
 
     /**
-     * 
+     *
      * @param {string} pseudo
      * @param {string} image
      * @param {string} descr
@@ -88,6 +88,16 @@ export class PanthalassaApi
                 })
                 .catch(error => reject(error));
         })
+    }
+
+    /**
+     *
+     * @returns {Promise<void>}
+     */
+    public hasAbout(){
+
+        return hasProfile(this.db, this.pubEventEmitter);
+
     }
 
     /**
