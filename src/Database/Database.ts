@@ -2,7 +2,7 @@ import * as Realm from 'realm';
 
 export default class Database {
 
-    private realm:ProgressPromise;
+    public realm:ProgressPromise;
 
     /**
      *
