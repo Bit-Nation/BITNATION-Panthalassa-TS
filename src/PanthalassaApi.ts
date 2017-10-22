@@ -1,13 +1,13 @@
 import Repo from './Repo';
 import FileSystemInterface from 'BITNATION-Panthalassa-TS-fs-interface/FileSystemInterface';
 import EthUtils from "./EthWallet/EthUtils";
-import Utils from "./Utils";
+import Utils, {hasPrivateEthKey, hasProfile} from "./Utils";
 import {SecureStorageInterface} from "BITNATION-Panthalassa-TS-secure-storage-interface/SecureStorageInterface";
 import {About} from "./ValueObjects";
-import DataBase from './Database/Database'
-import {BaseConfig} from './Database/Config'
+import DataBase from './Database/Database';
+import {BaseConfig} from './Database/Config';
 import {EventEmitter, ListenerFn} from "eventemitter3";
-import {PANTHALASSA_START, PANTHALASSA_STOP} from "./Eventemitter/Events"
+import {PANTHALASSA_START, PANTHALASSA_START_CONFIRMED, PANTHALASSA_START_REJECTED} from "./Eventemitter/Events";
 
 export class PanthalassaApi
 {
@@ -88,9 +88,33 @@ export class PanthalassaApi
 
     }
 
-    public start(){
+    /**
+     *
+     * @returns {Promise<boolean>}
+     */
+    public start() : Promise<void>{
 
-        this.intEventEmitter.emit(PANTHALASSA_START)
+        let p:Promise<void> = new Promise((resolve, reject) => {
+
+            Promise
+                .all([
+                    hasProfile(this.db, this.pubEventEmitter),
+                    hasPrivateEthKey(this.ethUtils, this.pubEventEmitter)
+                ])
+                .then(success => {
+                    resolve();
+                    this.intEventEmitter.emit(PANTHALASSA_START_CONFIRMED);
+                })
+                .catch(errors => {
+                    this.intEventEmitter.emit(PANTHALASSA_START_REJECTED);
+                    reject(new Error("Not all requirements to start panthalassa are satisfied"));
+                });
+
+        });
+
+        this.intEventEmitter.emit(PANTHALASSA_START);
+
+        return p;
 
     }
 

@@ -10,3 +10,6 @@ export class InvalidPublicKey extends Error{}
 
 export class FileDoesNotExistError extends Error{}
 
+export class MissingProfileError extends Error{}
+
+export class MissingEthPrivateKey extends Error{}
