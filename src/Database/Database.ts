@@ -16,16 +16,18 @@ export default class Database {
 
     /**
      *
-     * @param {(r: Realm) => Realm.Object} writeAction
-     * @returns {Promise<Realm.Object>}
+     * @param {string | Realm.ObjectClass | Function} type
+     * @param {T & Realm.ObjectPropsType} properties
+     * @param {boolean} update
+     * @returns {Promise<T>}
      */
-    public write(writeAction: (r:Realm) => Realm.Object) : Promise<Realm.Object> {
-
+    public write<T>(type: string | Realm.ObjectClass | Function, properties: T & Realm.ObjectPropsType, update?: boolean) : Promise<T> {
         return new Promise((resolve, reject) => {
+            console.log(this.realm);
             this.realm
-                .then(r => {
+                .then((r:Realm) => {
                     r.write(() => {
-                        resolve(writeAction(r));
+                        resolve(r.create(type, properties));
                     })
                 })
                 .catch(err => { reject(err) })
