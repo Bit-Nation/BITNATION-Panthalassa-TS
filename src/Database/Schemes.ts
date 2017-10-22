@@ -7,7 +7,10 @@ export class About implements ObjectSchema {
 
     public name:string = 'About';
 
+    public primaryKey:string = 'id';
+
     public properties:PropertiesTypes = {
+        id: 'int',
         pseudo : 'string',
         image: 'string',
         description: 'string'
