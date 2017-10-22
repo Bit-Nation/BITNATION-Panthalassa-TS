@@ -4,6 +4,8 @@ import EthUtils from "./EthWallet/EthUtils";
 import Utils from "./Utils";
 import {SecureStorageInterface} from "BITNATION-Panthalassa-TS-secure-storage-interface/SecureStorageInterface";
 import {About} from "./ValueObjects";
+import {EventEmitter, ListenerFn} from "eventemitter3";
+import {PANTHALASSA_START, PANTHALASSA_STOP} from "./Eventemitter/Events"
 
 export class PanthalassaApi
 {
@@ -12,8 +14,10 @@ export class PanthalassaApi
      *
      * @param {Repo} repo
      * @param {EthUtils} ethUtils
+     * @param {EventEmitter} intEventEmitter Used for internal event driven communication
+     * @param {EventEmitter} pubEventEmitter Used for public communication
      */
-    constructor(private repo: Repo, private ethUtils:EthUtils) { }
+    constructor(private repo: Repo, private ethUtils:EthUtils, private intEventEmitter:EventEmitter, private pubEventEmitter:EventEmitter) { }
 
     /**
      *
@@ -68,6 +72,24 @@ export class PanthalassaApi
         return this.repo.setAbout(about);
     }
 
+    /**
+     * Register listener
+     * @param {string} event
+     * @param {ListenerFn} fn
+     * @param context
+     */
+    on(event:string, fn: ListenerFn, context?: any){
+
+        this.pubEventEmitter.on(event, fn, context)
+
+    }
+
+    public start(){
+
+        this.intEventEmitter.emit(PANTHALASSA_START)
+
+    }
+
 }
 
 /**
@@ -84,7 +106,9 @@ export function factory(fs:FileSystemInterface, secStorage:SecureStorageInterfac
 
     return new PanthalassaApi(
         new Repo(fs, ethUtils),
-        ethUtils
+        ethUtils,
+        new EventEmitter(),
+        new EventEmitter(),
     );
 
 }
