@@ -10,3 +10,7 @@ export class BaseConfig implements Realm.Configuration {
     ]
 
 }
+
+export class UnitTestConfig extends BaseConfig {
+    public inMemory = true;
+}
