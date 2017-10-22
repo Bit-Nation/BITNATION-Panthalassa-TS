@@ -40,7 +40,8 @@
     "build:dev": "rm -rf ./dist && tsc -p tsconfig.dev.json",
     "build:prod": "rm -rf ./dist && tsc",
     "postinstall": "npm run build:prod",
-    "docs": "npm run build:prod && typedoc src --out docs --name 'Panthalassa (Typescript implementation)' --excludePrivate"
+    "docs": "npm run build:prod && typedoc src --out docs --name 'Panthalassa (Typescript implementation)' --excludePrivate",
+    "db:flush" : "rm -rf ./.database"
   },
   "engines": {
     "node": ">=6.11.3"
