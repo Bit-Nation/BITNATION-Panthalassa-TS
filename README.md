@@ -2,6 +2,8 @@
 
 [Docs](http://ipfs.io/ipfs/QmT7ddf1fXwksXqEug44nJFLWdPA6odo7qDv88qfXR8ZBh)
 
+[![Known Vulnerabilities](https://snyk.io/test/github/bit-nation/bitnation-panthalassa-ts/badge.svg)](https://snyk.io/test/github/bit-nation/bitnation-panthalassa-ts)
+
 # BITNATION-Panthalassa-TS
 This is a TypeScript(TS) implementation of [Panthalassa](https://docs.google.com/document/d/1qdniz9XerITfhinkZev98w2vnSKkP4p5iwqYk4ajK-Y/edit?ts=5968c50e#heading=h.5x0d5h95i329). TS is a compiled programming laguage. In the case of typescript it get's compiled to normal JavaScript(JS). The compiled JS can found in the dist folder.
 
